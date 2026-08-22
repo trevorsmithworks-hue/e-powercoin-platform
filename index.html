@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>e-Cache ($PWC) | Power Grid Fi-Fi</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#080c14',
+            brandCard: '#0f172a',
+            brandBorder: '#1e293b',
+            brandBlue: '#2563eb',
+            brandGold: '#eab308'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Ethers.js for Base Network Web3 Connection -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.2/ethers.umd.min.js"></script>
+</head>
+
+<body class="bg-[#080c14] text-slate-100 min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+
+  <!-- Header & Navigation -->
+  <header class="w-full border-b border-slate-800/80 bg-[#080c14]/90 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <!-- Logo & Mainnet Badge -->
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-lg bg-blue-600 flex items-center justify-center font-black text-white text-lg shadow-lg shadow-blue-500/20">
+          ⚡
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-extrabold tracking-tight text-white">e-Cache ($PWC)</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-950 border border-blue-600/40 text-blue-400">v1.2 Mainnet</span>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono block">Institutional Smart Contract Architecture & Power Grid Fi-Fi</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex flex-wrap items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 text-xs font-semibold">
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 rounded-lg bg-blue-600 text-white transition-all">Dashboard</button>
+        <button onclick="switchTab('vault')" id="tab-vault" class="tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">Vault</button>
+        <button onclick="switchTab('marketplace')" id="tab-marketplace" class="tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">Marketplace</button>
+        <button onclick="switchTab('ai-oracle')" id="tab-ai-oracle" class="tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">⚡ AI Oracle</button>
+        <button onclick="switchTab('power-credits')" id="tab-power-credits" class="tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">🔋 Power Credits</button>
+        <button onclick="switchTab('grid-surge')" id="tab-grid-surge" class="tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">🌐 Grid Surge</button>
+      </nav>
+
+      <!-- Connect Wallet Button -->
+      <div>
+        <button id="connectWalletBtn" onclick="connectWallet()" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-xl font-bold text-xs transition-all shadow-md shadow-blue-500/20">
+          Connect Wallet
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content Body -->
+  <main class="max-w-7xl mx-auto w-full p-6 flex-grow">
+
+    <!-- 1. DASHBOARD VIEW -->
+    <div id="view-dashboard" class="space-y-6">
+      
+      <!-- Top Metrics Row -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Metric 1 -->
+        <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-6 relative overflow-hidden">
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">Wallet $PWC Balance</div>
+          <div id="displayPwcBalance" class="text-4xl font-black text-white mb-3">5,000</div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-600/30 text-emerald-400 text-xs font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            +0.5% Reflection Tax Active
+          </div>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-6">
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">Active Power Bank Staked</div>
+          <div id="displayStakedBalance" class="text-4xl font-black text-amber-400 mb-3">250 PWC</div>
+          <div class="text-xs text-slate-500 font-mono">Hard Cap Limit: 100 PWC per bank</div>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-6">
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">EIP-2981 Holder Tier</div>
+          <div class="text-4xl font-black text-purple-400 mb-3">Gold Tier</div>
+          <div class="text-xs text-slate-500 font-mono">1.0% Dynamic Royalty Rate Applied</div>
+        </div>
+
+      </div>
+
+      <!-- Action Panel & Activity Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Deposit Box -->
+        <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-6">
+          <h3 class="text-lg font-bold text-white mb-1">Quick Deposit to Power Bank</h3>
+          <p class="text-xs text-slate-400 mb-4">Simulate staking tokens into your micro-savings vault instantly.</p>
+          <div class="flex gap-3">
+            <input id="depositInput" type="number" placeholder="Max 100 PWC" class="flex-grow bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-600 font-mono" />
+            <button onclick="handleStake()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md shadow-blue-500/20">
+              Stake
+            </button>
+          </div>
+        </div>
+
+        <!-- Activity History -->
+        <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-6">
+          <h3 class="text-lg font-bold text-white mb-4">Recent Protocol Activity</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center bg-slate-950/60 border border-slate-800/80 p-3 rounded-xl text-xs">
+              <div>
+                <span class="font-bold text-slate-200">Stake — 100 PWC</span>
+                <span class="text-slate-500 block text-[10px]">2 hrs ago</span>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300 font-mono">Completed</span>
+            </div>
+            <div class="flex justify-between items-center bg-slate-950/60 border border-slate-800/80 p-3 rounded-xl text-xs">
+              <div>
+                <span class="font-bold text-slate-200">Reflection — +12.5 PWC</span>
+                <span class="text-slate-500 block text-[10px]">5 hrs ago</span>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-700 text-emerald-400 font-mono">Rewarded</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- 2. VAULT VIEW -->
+    <div id="view-vault" class="hidden space-y-6">
+      <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8 max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold text-white mb-2">Power Block Bond Vault Manager</h2>
+        <p class="text-sm text-slate-400 mb-6">Containerize sealed Power Banks into multi-year compounding energy bond certificates.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="p-4 rounded-xl border border-slate-800 bg-slate-950 text-center">
+            <div class="text-xs text-slate-400 mb-1">5-Year Term</div>
+            <div class="text-2xl font-bold text-blue-400">1.5x Yield</div>
+          </div>
+          <div class="p-4 rounded-xl border-2 border-blue-600 bg-blue-950/20 text-center">
+            <div class="text-xs text-slate-400 mb-1">10-Year Term</div>
+            <div class="text-2xl font-bold text-blue-400">2.5x Yield</div>
+          </div>
+          <div class="p-4 rounded-xl border border-slate-800 bg-slate-950 text-center">
+            <div class="text-xs text-slate-400 mb-1">20-Year Term</div>
+            <div class="text-2xl font-bold text-amber-400">5.0x Yield</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-red-950/30 border border-red-800/40 text-red-300 text-xs mb-6 font-mono">
+          ⚠️ Early Unlock Policy: Breaking open a Power Block prior to its maturity date forfeits all interest and yield, returning only baseline principal $PWC.
+        </div>
+
+        <button class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-sm transition-all">
+          Merge Power Banks & Mint Bond
+        </button>
+      </div>
+    </div>
+
+    <!-- 3. MARKETPLACE VIEW -->
+    <div id="view-marketplace" class="hidden space-y-6">
+      <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h2 class="text-2xl font-bold text-white">Secondary Bond Marketplace</h2>
+            <p class="text-xs text-slate-400">Trade active Power Block certificates with accumulated yields intact (EIP-2981 Enabled).</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-purple-950 border border-purple-600/40 text-purple-300 text-xs font-mono">
+            Your Royalty Fee: 1.0%
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 flex justify-between items-center">
+            <div>
+              <div class="font-bold text-white">Power Block #1042 (10-Yr)</div>
+              <div class="text-xs text-slate-500 font-mono">Principal: 1,000 PWC • Maturity: 2034</div>
+            </div>
+            <button class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold text-xs">
+              Buy for $1,250 USDC
+            </button>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 flex justify-between items-center">
+            <div>
+              <div class="font-bold text-white">Power Block #0891 (20-Yr)</div>
+              <div class="text-xs text-slate-500 font-mono">Principal: 5,000 PWC • Maturity: 2044</div>
+            </div>
+            <button class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold text-xs">
+              Buy for $6,800 USDC
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. AI ORACLE VIEW -->
+    <div id="view-ai-oracle" class="hidden space-y-6">
+      <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8 max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold text-white mb-2">⚡ AI Compute & Inference Oracle</h2>
+        <p class="text-xs text-slate-400 mb-6">Auditing floating-point operations (FLOPs) and electricity cost per million AI tokens.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
+            <div class="text-xs text-slate-400">Wholesale Arbitrage</div>
+            <div class="text-xl font-black text-emerald-400 mt-1">$0.20 / 1M</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
+            <div class="text-xs text-slate-400">Energy Footprint</div>
+            <div class="text-xl font-black text-amber-400 mt-1">12.5 kWh</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
+            <div class="text-xs text-slate-400">PWC True Value</div>
+            <div class="text-xl font-black text-blue-400 mt-1">78.125 PWC</div>
+          </div>
+        </div>
+
+        <button class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-sm transition-all">
+          Purchase $ePT Compute Credits
+        </button>
+      </div>
+    </div>
+
+    <!-- 5. POWER CREDITS VIEW -->
+    <div id="view-power-credits" class="hidden space-y-6">
+      <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8 max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold text-white mb-2">🔋 Power Credits ($ekWh) Portal</h2>
+        <p class="text-xs text-slate-400 mb-6">Enterprise stable billing: 1 $ekWh = 1 kWh = $0.16 USD (Fixed Target).</p>
+        <button class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-sm transition-all">
+          Burn $PWC to Mint $ekWh OpEx Credits
+        </button>
+      </div>
+    </div>
+
+    <!-- 6. GRID SURGE VIEW -->
+    <div id="view-grid-surge" class="hidden space-y-6">
+      <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8 max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold text-white mb-2">🌐 Grid Surge & Demand-Response</h2>
+        <p class="text-xs text-slate-400 mb-6">Dynamic yield multipliers unlocking +3.0% APY during peak load windows and +2.0% for zk-IoT green attestations.</p>
+        <button class="w-full py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-xl font-bold text-sm transition-all">
+          Submit zk-IoT Telemetry Proof
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-slate-800 bg-[#080c14] py-6 px-8 text-xs text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div>© 2026 e-Cache Ecosystem • e-powercoin.com</div>
+    <div class="flex items-center gap-6">
+      <span>Standard: 1 PWC ≈ 1 kWh</span>
+      <span class="h-1 w-1 bg-slate-700 rounded-full"></span>
+      <span>Base Mainnet (Chain ID: 8453)</span>
+    </div>
+  </footer>
+
+  <!-- Vanilla State & Web3 JavaScript -->
+  <script>
+    // Tab Navigation Logic
+    const tabs = ['dashboard', 'vault', 'marketplace', 'ai-oracle', 'power-credits', 'grid-surge'];
+
+    function switchTab(selectedTab) {
+      tabs.forEach(tab => {
+        const view = document.getElementById('view-' + tab);
+        const btn = document.getElementById('tab-' + tab);
+        if (tab === selectedTab) {
+          view.classList.remove('hidden');
+          btn.className = 'tab-btn px-4 py-2 rounded-lg bg-blue-600 text-white transition-all';
+        } else {
+          view.classList.add('hidden');
+          btn.className = 'tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all';
+        }
+      });
+    }
+
+    // Staking Simulation
+    function handleStake() {
+      const input = document.getElementById('depositInput');
+      const stakedDisplay = document.getElementById('displayStakedBalance');
+      const val = parseInt(input.value);
+      if (isNaN(val) || val <= 0 || val > 100) {
+        alert('Please enter a valid amount up to 100 PWC (Power Bank cap).');
+        return;
+      }
+      stakedDisplay.innerText = (250 + val) + ' PWC';
+      input.value = '';
+      alert('Successfully staked ' + val + ' PWC into active Power Bank!');
+    }
+
+    // Base Web3 Wallet Connector
+    async function connectWallet() {
+      const btn = document.getElementById('connectWalletBtn');
+      if (typeof window.ethereum === 'undefined') {
+        alert('Please open in Coinbase Wallet, MetaMask, or a Web3 browser.');
+        return;
+      }
+      try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        btn.innerText = accounts[0].slice(0, 6) + '...' + accounts[0].slice(-4);
+        btn.className = 'bg-emerald-600 text-white px-5 py-2 rounded-xl font-bold text-xs';
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  </script>
+
+</body>
+</html>
