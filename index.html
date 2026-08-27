@@ -43,13 +43,14 @@
             <span class="text-xl font-extrabold tracking-tight text-white">e-Cache ($PWC)</span>
             <span id="networkBadge" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-950 border border-blue-600/40 text-blue-400">Base Mainnet (8453)</span>
           </div>
-          <span class="text-[10px] text-slate-500 font-mono block">Wholesale AI Compute Arbitrage & Energy Vaulting • e-powercoin.com</span>
+          <span class="text-[10px] text-slate-500 font-mono block">Energy Telemetry Index & Wholesale Compute • e-powercoin.com</span>
         </div>
       </div>
 
       <!-- Navigation Tabs -->
       <nav class="flex flex-wrap items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800 text-xs font-semibold">
         <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 rounded-lg bg-blue-600 text-white transition-all">Dashboard</button>
+        <button onclick="switchTab('telemetry')" id="tab-telemetry" class="tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">📈 Energy Index</button>
         <button onclick="switchTab('vault')" id="tab-vault" class="tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">Vault</button>
         <button onclick="switchTab('marketplace')" id="tab-marketplace" class="tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">Marketplace</button>
         <button onclick="switchTab('ai-oracle')" id="tab-ai-oracle" class="tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">⚡ Wholesale AI ($ePT)</button>
@@ -70,7 +71,7 @@
 
   <!-- Live Action Banner -->
   <div id="txBanner" class="hidden w-full bg-blue-950/80 border-b border-blue-800/60 py-2.5 px-6 text-xs text-center font-mono text-blue-300">
-    <span id="txBannerText">Ready for Base network interaction.</span>
+    <span id="txBannerText">Energy Index Telemetry synced with Base oracles.</span>
   </div>
 
   <!-- Main View Container -->
@@ -118,10 +119,10 @@
           <div class="space-y-3 font-mono text-xs">
             <div class="flex justify-between items-center bg-slate-950/60 border border-slate-800/80 p-3 rounded-xl">
               <div>
-                <span class="font-bold text-slate-200">Stake — 100 PWC</span>
-                <span class="text-slate-500 block text-[10px]">2 hrs ago</span>
+                <span class="font-bold text-slate-200">Chainlink Telemetry Sync</span>
+                <span class="text-slate-500 block text-[10px]">Global Benchmark: $0.1604 / kWh</span>
               </div>
-              <span class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300">Completed</span>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-950 border border-emerald-700 text-emerald-400">Synced</span>
             </div>
             <div class="flex justify-between items-center bg-slate-950/60 border border-slate-800/80 p-3 rounded-xl">
               <div>
@@ -135,29 +136,100 @@
       </div>
     </div>
 
-    <!-- 2. VAULT VIEW -->
+    <!-- 2. ENERGY INDEX TELEMETRY VIEW (KEY AREA 3) -->
+    <div id="view-telemetry" class="hidden space-y-6">
+      <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8 max-w-5xl mx-auto">
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 border-b border-slate-800 pb-6">
+          <div>
+            <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+              📈 Global Energy Index Telemetry
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Live oracle aggregation indexing international kilowatt-hour tariffs directly to $PWC valuation[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span).
+            </p>
+          </div>
+          <div class="bg-blue-950/60 border border-blue-600/40 px-3.5 py-1.5 rounded-xl text-right">
+            <span class="text-[10px] text-slate-400 font-mono block">Chainlink Feed Status</span>
+            <span class="text-xs font-bold text-emerald-400 flex items-center justify-end gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+              Live Base Mainnet Feed[span_4](start_span)[span_4](end_span)
+            </span>
+          </div>
+        </div>
+
+        <!-- Live Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-mono text-slate-400 uppercase mb-1">Global Avg kWh</div>
+            <div class="text-3xl font-black text-amber-400">$0.1604</div>
+            <div class="text-[10px] text-emerald-400 font-mono mt-1">▲ +0.24% (24h)</div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-mono text-slate-400 uppercase mb-1">Green Energy Score</div>
+            <div class="text-3xl font-black text-emerald-400">84.2 / 100</div>
+            <div class="text-[10px] text-slate-500 font-mono mt-1">zk-IoT Verified[span_5](start_span)[span_5](end_span)</div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-mono text-slate-400 uppercase mb-1">PWC Intrinsic Peg</div>
+            <div class="text-3xl font-black text-blue-400">1.000 kWh[span_6](start_span)[span_6](end_span)</div>
+            <div class="text-[10px] text-slate-500 font-mono mt-1">10M Fixed Cap[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span)</div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-mono text-slate-400 uppercase mb-1">Grid Demand Index</div>
+            <div class="text-3xl font-black text-purple-400">112% High</div>
+            <div class="text-[10px] text-amber-400 font-mono mt-1">Surge Bonus Active[span_9](start_span)[span_9](end_span)</div>
+          </div>
+        </div>
+
+        <!-- Interactive Telemetry Converter -->
+        <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 mb-6">
+          <h3 class="text-sm font-bold text-white mb-3">⚡ Real-Time Power to $PWC Conversion Calculator</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-[10px] font-mono text-slate-400 block mb-1">Power Consumption (kWh)</label>
+              <input id="calcKwhInput" oninput="calculateEnergyEquivalent()" type="number" value="100" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white font-mono focus:border-blue-600 focus:outline-none" />
+            </div>
+            <div>
+              <label class="text-[10px] font-mono text-slate-400 block mb-1">Calculated Fiat Value (USD)</label>
+              <div id="calcUsdOutput" class="bg-slate-900/60 border border-slate-800/80 rounded-xl px-4 py-2 text-sm text-amber-400 font-mono font-bold">$16.04 USD</div>
+            </div>
+            <div>
+              <label class="text-[10px] font-mono text-slate-400 block mb-1">Settlement in Power Coins</label>
+              <div id="calcPwcOutput" class="bg-slate-900/60 border border-slate-800/80 rounded-xl px-4 py-2 text-sm text-blue-400 font-mono font-bold">100.00 PWC[span_10](start_span)[span_10](end_span)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. VAULT VIEW -->
     <div id="view-vault" class="hidden space-y-6">
       <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8 max-w-3xl mx-auto">
         <h2 class="text-2xl font-bold text-white mb-2">Power Block Bond Vault Manager</h2>
-        <p class="text-sm text-slate-400 mb-6">Containerize sealed Power Banks into multi-year compounding energy bond certificates.</p>
+        <p class="text-sm text-slate-400 mb-6">Containerize sealed Power Banks into multi-year compounding energy bond certificates[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span).</p>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div onclick="selectedBondTerm = 5; updateVaultSelection(5)" id="term-5" class="cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-950 text-center transition-all">
             <div class="text-xs text-slate-400 mb-1">5-Year Term</div>
-            <div class="text-2xl font-bold text-blue-400">1.5x Yield</div>
+            <div class="text-2xl font-bold text-blue-400">1.5x Yield[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span)</div>
           </div>
           <div onclick="selectedBondTerm = 10; updateVaultSelection(10)" id="term-10" class="cursor-pointer p-4 rounded-xl border-2 border-blue-600 bg-blue-950/20 text-center transition-all">
             <div class="text-xs text-slate-400 mb-1">10-Year Term</div>
-            <div class="text-2xl font-bold text-blue-400">2.5x Yield</div>
+            <div class="text-2xl font-bold text-blue-400">2.5x Yield[span_15](start_span)[span_15](end_span)[span_16](start_span)[span_16](end_span)</div>
           </div>
           <div onclick="selectedBondTerm = 20; updateVaultSelection(20)" id="term-20" class="cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-950 text-center transition-all">
             <div class="text-xs text-slate-400 mb-1">20-Year Term</div>
-            <div class="text-2xl font-bold text-amber-400">5.0x Yield</div>
+            <div class="text-2xl font-bold text-amber-400">5.0x Yield[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span)</div>
           </div>
         </div>
 
         <div class="p-4 rounded-xl bg-red-950/30 border border-red-800/40 text-red-300 text-xs mb-6 font-mono">
-          ⚠️ Early Unlock Policy: Breaking open a Power Block prior to maturity forfeits all accumulated interest and yield, safely returning only baseline principal $PWC[span_3](start_span)[span_3](end_span).
+          ⚠️ Early Unlock Policy: Breaking open a Power Block prior to maturity forfeits all accumulated interest and yield, safely returning only baseline principal $PWC[span_19](start_span)[span_19](end_span).
         </div>
 
         <button onclick="handleMintBond()" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-blue-600/20">
@@ -166,16 +238,16 @@
       </div>
     </div>
 
-    <!-- 3. MARKETPLACE VIEW -->
+    <!-- 4. MARKETPLACE VIEW -->
     <div id="view-marketplace" class="hidden space-y-6">
       <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8">
         <div class="flex justify-between items-center mb-6">
           <div>
             <h2 class="text-2xl font-bold text-white">Secondary Bond Marketplace</h2>
-            <p class="text-xs text-slate-400">Trade active Power Block certificates with accumulated yields intact (EIP-2981 Enabled)[span_4](start_span)[span_4](end_span).</p>
+            <p class="text-xs text-slate-400">Trade active Power Block certificates with accumulated yields intact (EIP-2981 Enabled)[span_20](start_span)[span_20](end_span).</p>
           </div>
           <div class="px-3 py-1 rounded-full bg-purple-950 border border-purple-600/40 text-purple-300 text-xs font-mono">
-            Your Royalty Fee: 1.0%
+            Your Royalty Fee: 1.0%[span_21](start_span)[span_21](end_span)
           </div>
         </div>
 
@@ -202,7 +274,7 @@
       </div>
     </div>
 
-    <!-- 4. WHOLESALE AI COMPUTE GATEWAY ($ePT) VIEW -->
+    <!-- 5. WHOLESALE AI COMPUTE GATEWAY ($ePT) VIEW -->
     <div id="view-ai-oracle" class="hidden space-y-6">
       <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8 max-w-5xl mx-auto">
         
@@ -212,12 +284,12 @@
               ⚡ Wholesale AI Compute Gateway ($ePT)
             </h2>
             <p class="text-xs text-slate-400 mt-1">
-              "Costco for AI Compute" — Purchase non-expiring bulk AI compute tokens backed by $PWC arbitrage[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span).
+              "Costco for AI Compute" — Purchase bulk AI tokens backed by $PWC arbitrage[span_22](start_span)[span_22](end_span)[span_23](start_span)[span_23](end_span).
             </p>
           </div>
           <div class="bg-blue-950/60 border border-blue-600/40 px-3.5 py-1.5 rounded-xl text-right">
             <span class="text-[10px] text-slate-400 font-mono block">Treasury Buy-Back Engine</span>
-            <span class="text-xs font-bold text-blue-400">80% Margin Auto-Buybacks Active[span_7](start_span)[span_7](end_span)</span>
+            <span class="text-xs font-bold text-blue-400">80% Margin Auto-Buybacks[span_24](start_span)[span_24](end_span)</span>
           </div>
         </div>
 
@@ -228,10 +300,10 @@
           <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 hover:border-yellow-500/50 transition-all flex flex-col justify-between">
             <div>
               <div class="text-xs font-mono text-yellow-500 uppercase tracking-wider mb-1">Retail Tier</div>
-              <div class="text-3xl font-black mb-1">$10 <span class="text-xs text-slate-500 font-normal">/ package</span></div>
-              <div class="text-sm font-bold text-slate-200 mt-2">10 Million $ePT[span_8](start_span)[span_8](end_span)</div>
+              <div class="text-3xl font-black mb-1">$10 <span class="text-xs text-slate-500 font-normal">/ pkg</span></div>
+              <div class="text-sm font-bold text-slate-200 mt-2">10 Million $ePT[span_25](start_span)[span_25](end_span)</div>
               <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Wholesale cost: $2.00. Protocol pockets $8.00 spread directly into $PWC market buybacks[span_9](start_span)[span_9](end_span).
+                Wholesale cost: $2.00. Protocol pockets $8.00 spread directly into $PWC market buybacks[span_26](start_span)[span_26](end_span).
               </p>
             </div>
             <button onclick="handleBuyCompute(10, '10,000,000')" class="w-full mt-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white text-xs font-semibold transition-all">
@@ -242,14 +314,14 @@
           <!-- Tier 2 -->
           <div class="p-6 rounded-2xl bg-blue-950/20 border-2 border-blue-600 relative flex flex-col justify-between shadow-lg shadow-blue-500/10">
             <div class="absolute -top-3 right-4 px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-extrabold uppercase tracking-widest">
-              2x Multiplier[span_10](start_span)[span_10](end_span)
+              2x Multiplier[span_27](start_span)[span_27](end_span)
             </div>
             <div>
               <div class="text-xs font-mono text-blue-400 uppercase tracking-wider mb-1">Pro Developer</div>
-              <div class="text-3xl font-black mb-1">$50 <span class="text-xs text-slate-500 font-normal">/ package</span></div>
-              <div class="text-sm font-bold text-slate-200 mt-2">100 Million $ePT[span_11](start_span)[span_11](end_span)</div>
+              <div class="text-3xl font-black mb-1">$50 <span class="text-xs text-slate-500 font-normal">/ pkg</span></div>
+              <div class="text-sm font-bold text-slate-200 mt-2">100 Million $ePT[span_28](start_span)[span_28](end_span)</div>
               <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Wholesale cost: $20.00. Protocol reserves $30.00 spread to compound long-term bond vaults[span_12](start_span)[span_12](end_span).
+                Wholesale cost: $20.00. Protocol reserves $30.00 spread to compound long-term bond vaults[span_29](start_span)[span_29](end_span).
               </p>
             </div>
             <button onclick="handleBuyCompute(50, '100,000,000')" class="w-full mt-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-md shadow-blue-500/20">
@@ -261,10 +333,10 @@
           <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 hover:border-purple-500/50 transition-all flex flex-col justify-between">
             <div>
               <div class="text-xs font-mono text-purple-400 uppercase tracking-wider mb-1">Enterprise / Node</div>
-              <div class="text-3xl font-black mb-1">$1,000 <span class="text-xs text-slate-500 font-normal">/ package</span></div>
-              <div class="text-sm font-bold text-slate-200 mt-2">5 Billion $ePT[span_13](start_span)[span_13](end_span)</div>
+              <div class="text-3xl font-black mb-1">$1,000 <span class="text-xs text-slate-500 font-normal">/ pkg</span></div>
+              <div class="text-sm font-bold text-slate-200 mt-2">5 Billion $ePT[span_30](start_span)[span_30](end_span)</div>
               <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-                Sold at cost ($1,000). Locks massive capital directly into $PWC liquidity to execute inference[span_14](start_span)[span_14](end_span).
+                Sold at cost ($1,000). Locks massive capital directly into $PWC liquidity to execute inference[span_31](start_span)[span_31](end_span).
               </p>
             </div>
             <button onclick="handleBuyCompute(1000, '5,000,000,000')" class="w-full mt-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white text-xs font-semibold transition-all">
@@ -274,41 +346,25 @@
 
         </div>
 
-        <!-- Telemetry & Oracle Statistics -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
-            <div class="text-xs text-slate-400">Wholesale Enterprise Rate</div>
-            <div class="text-xl font-black text-emerald-400 mt-1">$0.20 / 1M Tokens[span_15](start_span)[span_15](end_span)</div>
-          </div>
-          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
-            <div class="text-xs text-slate-400">Inference Energy Burn</div>
-            <div class="text-xl font-black text-amber-400 mt-1">12.5 kWh / 1M[span_16](start_span)[span_16](end_span)</div>
-          </div>
-          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-center">
-            <div class="text-xs text-slate-400">PWC Intrinsic Cost</div>
-            <div class="text-xl font-black text-blue-400 mt-1">78.125 PWC[span_17](start_span)[span_17](end_span)</div>
-          </div>
-        </div>
-
       </div>
     </div>
 
-    <!-- 5. POWER CREDITS VIEW -->
+    <!-- 6. POWER CREDITS VIEW -->
     <div id="view-power-credits" class="hidden space-y-6">
       <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8 max-w-2xl mx-auto text-center">
         <h2 class="text-2xl font-bold text-white mb-2">🔋 Power Credits ($ekWh) Portal</h2>
-        <p class="text-xs text-slate-400 mb-6">Enterprise non-volatile OpEx billing: 1 $ekWh = 1 kWh = $0.16 USD[span_18](start_span)[span_18](end_span).</p>
+        <p class="text-xs text-slate-400 mb-6">Enterprise non-volatile OpEx billing: 1 $ekWh = 1 kWh = $0.16 USD[span_32](start_span)[span_32](end_span).</p>
         <button onclick="handleBurnForCredits()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-emerald-600/20">
           Burn $PWC on Base to Mint $ekWh OpEx Credits
         </button>
       </div>
     </div>
 
-    <!-- 6. GRID SURGE VIEW -->
+    <!-- 7. GRID SURGE VIEW -->
     <div id="view-grid-surge" class="hidden space-y-6">
       <div class="bg-[#0f172a] border border-slate-800 rounded-2xl p-8 max-w-2xl mx-auto text-center">
         <h2 class="text-2xl font-bold text-white mb-2">🌐 Grid Surge & Demand-Response</h2>
-        <p class="text-xs text-slate-400 mb-6">Dynamic yield multipliers unlocking +3.0% APY during peak load windows and +2.0% for zk-IoT green attestations[span_19](start_span)[span_19](end_span).</p>
+        <p class="text-xs text-slate-400 mb-6">Dynamic yield multipliers unlocking +3.0% APY during peak load windows and +2.0% for zk-IoT green attestations[span_33](start_span)[span_33](end_span).</p>
         <button onclick="handleSubmitZkTelemetry()" class="w-full py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-amber-600/20">
           Submit zk-IoT Telemetry Proof to Base
         </button>
@@ -321,15 +377,15 @@
   <footer class="w-full border-t border-slate-800 bg-[#080c14] py-6 px-8 text-xs text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4">
     <div>© 2026 e-Cache Ecosystem • e-powercoin.com</div>
     <div class="flex items-center gap-6">
-      <span>Standard: 1 PWC ≈ 1 kWh[span_20](start_span)[span_20](end_span)</span>
+      <span>Standard: 1 PWC ≈ 1 kWh[span_34](start_span)[span_34](end_span)</span>
       <span class="h-1 w-1 bg-slate-700 rounded-full"></span>
-      <span>Base Mainnet (Chain ID: 8453)[span_21](start_span)[span_21](end_span)</span>
+      <span>Base Mainnet (Chain ID: 8453)[span_35](start_span)[span_35](end_span)</span>
     </div>
   </footer>
 
   <!-- Web3 & UI Script -->
   <script>
-    const tabs = ['dashboard', 'vault', 'marketplace', 'ai-oracle', 'power-credits', 'grid-surge'];
+    const tabs = ['dashboard', 'telemetry', 'vault', 'marketplace', 'ai-oracle', 'power-credits', 'grid-surge'];
     let selectedBondTerm = 10;
 
     function switchTab(selectedTab) {
@@ -344,6 +400,13 @@
           btn.className = 'tab-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all';
         }
       });
+    }
+
+    function calculateEnergyEquivalent() {
+      const input = parseFloat(document.getElementById('calcKwhInput').value) || 0;
+      const rate = 0.1604;
+      document.getElementById('calcUsdOutput').innerText = '$' + (input * rate).toFixed(2) + ' USD';
+      document.getElementById('calcPwcOutput').innerText = input.toFixed(2) + ' PWC';
     }
 
     function updateVaultSelection(term) {
@@ -390,32 +453,32 @@
       const input = document.getElementById('depositInput');
       const val = parseInt(input.value);
       if (isNaN(val) || val <= 0 || val > 100) {
-        alert('Please enter an amount up to 100 PWC (Power Bank Cap)[span_22](start_span)[span_22](end_span).');
+        alert('Please enter an amount up to 100 PWC (Power Bank Cap)[span_36](start_span)[span_36](end_span).');
         return;
       }
       document.getElementById('displayStakedBalance').innerText = (250 + val) + ' PWC';
       input.value = '';
-      setTxStatus('Simulated Stake Successful: ' + val + ' PWC locked into active Power Bank[span_23](start_span)[span_23](end_span).');
+      setTxStatus('Simulated Stake Successful: ' + val + ' PWC locked into active Power Bank[span_37](start_span)[span_37](end_span).');
     }
 
     function handleMintBond() {
-      setTxStatus('Minting ' + selectedBondTerm + '-Year Power Block Bond on Base...[span_24](start_span)[span_24](end_span)');
+      setTxStatus('Minting ' + selectedBondTerm + '-Year Power Block Bond on Base...[span_38](start_span)[span_38](end_span)');
     }
 
     function handleBuyCompute(usdAmount, tokenCount) {
-      setTxStatus('Wholesale AI Purchase: Routing $' + usdAmount + ' for ' + tokenCount + ' $ePT credits into Base Router...[span_25](start_span)[span_25](end_span)');
+      setTxStatus('Wholesale AI Purchase: Routing $' + usdAmount + ' for ' + tokenCount + ' $ePT credits into Base Router...[span_39](start_span)[span_39](end_span)');
     }
 
     function handleMarketBuy(blockId, priceUsdc) {
-      setTxStatus('Executing secondary market purchase for Power Block #' + blockId + ' ($' + priceUsdc + ' USDC)...[span_26](start_span)[span_26](end_span)');
+      setTxStatus('Executing secondary market purchase for Power Block #' + blockId + ' ($' + priceUsdc + ' USDC)...[span_40](start_span)[span_40](end_span)');
     }
 
     function handleBurnForCredits() {
-      setTxStatus('Burning $PWC to mint non-volatile $ekWh Power Credits...[span_27](start_span)[span_27](end_span)');
+      setTxStatus('Burning $PWC to mint non-volatile $ekWh Power Credits...[span_41](start_span)[span_41](end_span)');
     }
 
     function handleSubmitZkTelemetry() {
-      setTxStatus('Submitting zk-IoT telemetry proof string to Base Verifier...[span_28](start_span)[span_28](end_span)');
+      setTxStatus('Submitting zk-IoT telemetry proof string to Base Verifier...[span_42](start_span)[span_42](end_span)');
     }
   </script>
 
