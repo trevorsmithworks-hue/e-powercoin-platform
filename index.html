@@ -3,89 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>e-Cache ($PWC) | AI Compute & Energy Clearinghouse</title>
-  <!-- Tailwind CSS CDN -->
+  <title>e-Cache ($PWC) | AI Compute & Energy Standard</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brandDark: '#050811',
-            brandSurface: 'rgba(15, 23, 42, 0.65)',
-            brandBorder: 'rgba(51, 65, 85, 0.45)',
-            brandBlue: '#2563eb',
-            brandCyan: '#06b6d4',
-            brandPink: '#ec4899',
-            brandPurple: '#8b5cf6'
-          }
-        }
-      }
-    };
-  </script>
   <style>
-    body {
-      background-color: #030712;
-      color: #f8fafc;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-    .glass-panel {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(51, 65, 85, 0.4);
-    }
+    body { background-color: #030712; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .glass-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(51, 65, 85, 0.45); }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
-  <!-- Top Header Navigation -->
+  <!-- Top Navigation Bar -->
   <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-cyan-500/20">
-          ⚡
-        </div>
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-cyan-500/20">⚡</div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="font-black text-lg tracking-tight text-white">e-Cache</span>
-            <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">BASE (8453)</span>
+            <span class="font-black text-lg text-white">e-Cache ($PWC)</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Base (8453)</span>
           </div>
-          <p class="text-[10px] text-slate-400">Wholesale AI Compute & Energy Standard</p>
+          <p class="text-[10px] text-slate-400">Costco for AI Compute & Energy Standard • e-powercoin.com</p>
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
-      <nav class="hidden md:flex items-center gap-1">
-        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">Dashboard</button>
-        <button onclick="switchTab('compute')" id="nav-compute" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-white shadow transition">⚡ AI Compute</button>
+      <nav class="hidden lg:flex items-center gap-1">
+        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-white shadow transition">Dashboard</button>
+        <button onclick="switchTab('compute')" id="nav-compute" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">⚡ AI Compute ($ePT)</button>
         <button onclick="switchTab('index')" id="nav-index" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">📈 Energy Index</button>
         <button onclick="switchTab('vault')" id="nav-vault" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">🏛️ Vault</button>
         <button onclick="switchTab('marketplace')" id="nav-marketplace" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">🏪 Marketplace</button>
       </nav>
 
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-3">
-        <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x061610342649ceC7Df2451127A84FDf3daa7418d" target="_blank" class="px-3 py-1.5 bg-pink-600/20 hover:bg-pink-600/30 border border-pink-500/40 text-pink-300 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
-          <span>Trade $PWC</span>
-          <span class="text-[10px]">↗</span>
+      <div class="flex items-center gap-2">
+        <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x061610342649ceC7Df2451127A84FDf3daa7418d" target="_blank" class="px-3 py-1.5 bg-pink-600/20 hover:bg-pink-600/30 border border-pink-500/40 text-pink-300 rounded-xl text-xs font-bold transition">
+          Trade $PWC ↗
         </a>
         <button onclick="manageApiKey()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition" id="key-btn">
           ⚙️ Set API Key
+        </button>
+        <button class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Connect Wallet</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Main Content Body -->
-  <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
-    
-    <!-- TAB: AI COMPUTE GATEWAY -->
-    <section id="tab-compute" class="space-y-6">
+  <!-- Main Content Areas -->
+  <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-6">
+
+    <!-- TAB 1: ORIGINAL DASHBOARD -->
+    <section id="tab-dashboard" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="glass-card rounded-2xl p-5 space-y-2">
+          <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Wallet $PWC Balance</div>
+          <div class="text-3xl font-black text-white">5,000 PWC</div>
+          <div class="text-xs font-semibold text-emerald-400 flex items-center gap-1">
+            <span>●</span> +0.5% Reflection Tax Active
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 space-y-2">
+          <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Available Compute ($ePT)</div>
+          <div class="text-3xl font-black text-cyan-400">10,000,000 $ePT</div>
+          <div class="text-xs text-slate-400">Non-Expiring Wholesale Buffer</div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 space-y-2">
+          <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">EIP-2981 Holder Tier</div>
+          <div class="text-3xl font-black text-purple-400">Gold Tier</div>
+          <div class="text-xs text-slate-400">1.0% Dynamic Royalty Rate Applied</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="glass-card rounded-2xl p-6 space-y-4">
+          <div>
+            <h3 class="text-base font-bold text-white">Quick Deposit to Power Bank</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Stake $PWC into micro-savings containers (max 100 PWC per bank).</p>
+          </div>
+          <div class="flex gap-3">
+            <input type="number" placeholder="Amount (Max 100)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-cyan-400" />
+            <button class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 font-bold text-xs rounded-xl text-white transition whitespace-nowrap">
+              Stake on Base
+            </button>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6 space-y-3">
+          <h3 class="text-base font-bold text-white">Recent Protocol Activity</h3>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+              <div>
+                <div class="text-xs font-bold text-slate-200">AI Compute Routing</div>
+                <div class="text-[10px] text-slate-400">Llama 3.3 70B • 4,210 $ePT Burned</div>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Audited</span>
+            </div>
+            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+              <div>
+                <div class="text-xs font-bold text-slate-200">Treasury Buyback Execution</div>
+                <div class="text-[10px] text-slate-400">80% Margin Spread Routed to $PWC</div>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Compounded</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: WHOLESALE AI COMPUTE GATEWAY (LIVE INFERENCE) -->
+    <section id="tab-compute" class="hidden space-y-6">
       <div class="flex flex-col md:flex-row justify-between md:items-end gap-4 border-b border-slate-800 pb-4">
         <div>
           <h1 class="text-2xl font-black text-white flex items-center gap-2">
             <span>⚡ Wholesale AI Compute Gateway ($ePT)</span>
           </h1>
-          <p class="text-sm text-slate-400 mt-1">Direct token inference settled against kilowatt-hour energy benchmarks</p>
+          <p class="text-sm text-slate-400 mt-1">"Costco for AI Compute" — Purchase bulk AI tokens backed by $PWC arbitrage.</p>
         </div>
         <div class="text-right">
           <div class="text-xs font-mono text-cyan-400">TREASURY BUY-BACK ENGINE</div>
@@ -93,17 +126,16 @@
         </div>
       </div>
 
-      <!-- Router Testing Card -->
-      <div class="glass-panel rounded-2xl p-6 space-y-5">
+      <div class="glass-card rounded-2xl p-6 space-y-5">
         <div class="flex justify-between items-center">
-          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-300">Live Model Inference Engine</h2>
-          <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">OpenRouter Free Tier Connected</span>
+          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-300">Interactive Model Router Test</h2>
+          <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Live OpenRouter Pipeline</span>
         </div>
 
         <div class="space-y-4">
           <div>
-            <label class="block text-xs font-semibold text-slate-400 mb-1.5">Wholesale LLM Pipeline</label>
-            <select id="modelSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400 font-sans">
+            <label class="block text-xs font-semibold text-slate-400 mb-1.5">Target LLM</label>
+            <select id="modelSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white">
               <option value="openrouter/free">OpenRouter Free Tier (Llama 3.3 / Mistral - $0.00)</option>
               <option value="meta-llama/llama-3.3-70b-instruct">Meta Llama 3.3 70B ($0.20 / 1M)</option>
               <option value="openai/gpt-4o-mini">OpenAI GPT-4o Mini ($0.25 / 1M)</option>
@@ -112,74 +144,64 @@
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-slate-400 mb-1.5">Prompt Query</label>
-            <textarea id="promptInput" rows="3" placeholder="Enter an AI prompt to execute live inference and audit electrical power consumption..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"></textarea>
+            <label class="block text-xs font-semibold text-slate-400 mb-1.5">Prompt Ingestion Test</label>
+            <textarea id="promptInput" rows="3" placeholder="Type a prompt to test inference (e.g., 'Summarize energy arbitrage for data center clusters')..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400"></textarea>
           </div>
 
-          <button id="execute-btn" onclick="executeLiveInference()" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold rounded-xl text-sm transition duration-150 shadow-lg shadow-cyan-500/20">
+          <button id="execute-btn" onclick="executeLiveInference()" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold rounded-xl text-sm transition shadow-lg shadow-cyan-500/20">
             Execute Arbitrage Inference ⚡
           </button>
         </div>
 
-        <!-- Telemetry Metrics -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-slate-800/80">
-          <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl">
-            <div class="text-[10px] text-slate-500 uppercase tracking-wider">Total Tokens</div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-slate-800">
+          <div class="bg-slate-900 p-3 rounded-xl">
+            <div class="text-[10px] text-slate-500 uppercase">Total Tokens Billed</div>
             <div id="token-display" class="text-base font-bold text-slate-200 mt-0.5">0 Tokens</div>
           </div>
-          <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl">
-            <div class="text-[10px] text-slate-500 uppercase tracking-wider">Power Consumed</div>
+          <div class="bg-slate-900 p-3 rounded-xl">
+            <div class="text-[10px] text-slate-500 uppercase">Power Consumed</div>
             <div id="kwh-display" class="text-base font-bold text-cyan-400 mt-0.5">0.00000 kWh</div>
           </div>
-          <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl">
-            <div class="text-[10px] text-slate-500 uppercase tracking-wider">Wholesale Cost</div>
+          <div class="bg-slate-900 p-3 rounded-xl">
+            <div class="text-[10px] text-slate-500 uppercase">Wholesale Cost</div>
             <div id="cost-display" class="text-base font-bold text-amber-400 mt-0.5">$0.00000</div>
           </div>
-          <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl">
-            <div class="text-[10px] text-slate-500 uppercase tracking-wider">Deduction in PWC</div>
+          <div class="bg-slate-900 p-3 rounded-xl">
+            <div class="text-[10px] text-slate-500 uppercase">Deduction in PWC</div>
             <div id="pwc-display" class="text-base font-bold text-emerald-400 mt-0.5">0.0000 PWC</div>
           </div>
         </div>
 
-        <!-- Live Model Output -->
         <div id="output-wrapper" class="hidden bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
-          <div class="flex justify-between items-center text-[11px] font-mono text-slate-400">
-            <span>UPSTREAM MODEL RESPONSE</span>
-            <span id="output-model-badge" class="text-cyan-400">openrouter/free</span>
-          </div>
-          <div id="output-box" class="text-sm text-slate-200 whitespace-pre-wrap leading-relaxed"></div>
+          <div class="text-[11px] font-mono text-cyan-400">UPSTREAM MODEL OUTPUT</div>
+          <div id="output-box" class="text-sm text-slate-200 whitespace-pre-wrap"></div>
         </div>
       </div>
     </section>
 
-    <!-- Placeholder Fallbacks for Other Tabs -->
-    <section id="tab-dashboard" class="hidden glass-panel rounded-2xl p-8 text-center space-y-3">
-      <h2 class="text-xl font-bold">Network Treasury Dashboard</h2>
-      <p class="text-sm text-slate-400">Track 10M $PWC fixed circulating supply, Base liquidity pair, and active vault commitments.</p>
-    </section>
-    <section id="tab-index" class="hidden glass-panel rounded-2xl p-8 text-center space-y-3">
-      <h2 class="text-xl font-bold">Global Energy Clearing Index</h2>
+    <!-- TAB 3: ENERGY INDEX -->
+    <section id="tab-index" class="hidden glass-card rounded-2xl p-8 text-center space-y-2">
+      <h2 class="text-xl font-bold text-white">Global Energy Clearing Index</h2>
       <p class="text-sm text-slate-400">Live kilowatt-hour price feeds calibrated against Uniswap v3 pool depth.</p>
     </section>
-    <section id="tab-vault" class="hidden glass-panel rounded-2xl p-8 text-center space-y-3">
-      <h2 class="text-xl font-bold">Power Block Bond Vault</h2>
+
+    <!-- TAB 4: VAULT -->
+    <section id="tab-vault" class="hidden glass-card rounded-2xl p-8 text-center space-y-2">
+      <h2 class="text-xl font-bold text-white">Power Block Bond Vault</h2>
       <p class="text-sm text-slate-400">Lock $PWC into 10-Year or 20-Year institutional debentures.</p>
     </section>
-    <section id="tab-marketplace" class="hidden glass-panel rounded-2xl p-8 text-center space-y-3">
-      <h2 class="text-xl font-bold">Secondary Bond Marketplace</h2>
+
+    <!-- TAB 5: MARKETPLACE -->
+    <section id="tab-marketplace" class="hidden glass-card rounded-2xl p-8 text-center space-y-2">
+      <h2 class="text-xl font-bold text-white">Secondary Bond Marketplace</h2>
       <p class="text-sm text-slate-400">Trade locked energy assets with automated EIP-2981 royalty routing.</p>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="border-t border-slate-800/80 py-4 bg-slate-950/60 text-center text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div>© 2026 e-Cache Clearinghouse. All rights reserved.</div>
-      <div class="font-mono text-[11px] text-slate-400">Base Contract: 0x061610342649ceC7Df2451127A84FDf3daa7418d</div>
-    </div>
+    <div>© 2026 e-Cache Clearinghouse | Base Contract: 0x061610342649ceC7Df2451127A84FDf3daa7418d</div>
   </footer>
 
-  <!-- Interactive Logic & OpenRouter Inference Script -->
   <script>
     let openRouterKey = localStorage.getItem('pwc_openrouter_key') || '';
     updateKeyButtonUI();
@@ -189,18 +211,17 @@
       if (btn) {
         btn.innerText = openRouterKey ? '🔑 Key Active' : '⚙️ Set API Key';
         btn.className = openRouterKey 
-          ? 'px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 rounded-xl text-xs font-semibold transition'
-          : 'px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition';
+          ? 'px-3 py-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded-xl text-xs font-semibold'
+          : 'px-3 py-1.5 bg-slate-800 text-slate-300 border border-slate-700 rounded-xl text-xs font-semibold';
       }
     }
 
     function manageApiKey() {
-      const input = prompt('Enter your OpenRouter API Key (starts with sk-or-v1-):', openRouterKey);
+      const input = prompt('Enter your OpenRouter API Key (sk-or-v1-...):', openRouterKey);
       if (input !== null) {
         openRouterKey = input.trim();
         localStorage.setItem('pwc_openrouter_key', openRouterKey);
         updateKeyButtonUI();
-        if (openRouterKey) alert('OpenRouter API key saved locally in browser.');
       }
     }
 
@@ -229,7 +250,6 @@
       const btn = document.getElementById('execute-btn');
       const outputWrapper = document.getElementById('output-wrapper');
       const outputBox = document.getElementById('output-box');
-      const outputBadge = document.getElementById('output-model-badge');
 
       const tokenDisplay = document.getElementById('token-display');
       const kwhDisplay = document.getElementById('kwh-display');
@@ -238,7 +258,7 @@
 
       const text = promptInput ? promptInput.value.trim() : '';
       if (!text) {
-        alert('Please enter a prompt before executing compute.');
+        alert('Please enter a prompt.');
         return;
       }
 
@@ -247,9 +267,8 @@
         if (!openRouterKey) return;
       }
 
-      const selectedModel = modelSelect ? modelSelect.value : 'openrouter/free';
       btn.disabled = true;
-      btn.innerText = 'Routing Wholesale Inference...';
+      btn.innerText = 'Routing Compute...';
 
       try {
         const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -261,33 +280,29 @@
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            model: selectedModel,
+            model: modelSelect ? modelSelect.value : 'openrouter/free',
             messages: [{ role: 'user', content: text }]
           })
         });
 
         const data = await res.json();
-        if (data.error) throw new Error(data.error.message || 'Upstream compute failure');
+        if (data.error) throw new Error(data.error.message);
 
-        const reply = data.choices?.[0]?.message?.content || 'No completion returned.';
+        const reply = data.choices?.[0]?.message?.content || 'No reply.';
         const tokens = data.usage?.total_tokens || Math.ceil((text.length + reply.length) / 4);
-
-        // Benchmark: ~0.0003 kWh / token
         const kwh = (tokens * 0.0003).toFixed(5);
-        // Uniswap benchmark clearing rate: $0.1804
         const pwc = (Number(kwh) / 0.1804).toFixed(4);
         const costUsd = ((tokens / 1000000) * 0.20).toFixed(5);
 
-        if (tokenDisplay) tokenDisplay.innerText = Number(tokens).toLocaleString() + ' Tokens';
+        if (tokenDisplay) tokenDisplay.innerText = tokens.toLocaleString() + ' Tokens';
         if (kwhDisplay) kwhDisplay.innerText = kwh + ' kWh';
         if (costDisplay) costDisplay.innerText = '$' + costUsd;
         if (pwcDisplay) pwcDisplay.innerText = pwc + ' PWC';
 
-        if (outputBadge) outputBadge.innerText = selectedModel;
         if (outputBox) outputBox.innerText = reply;
         if (outputWrapper) outputWrapper.classList.remove('hidden');
       } catch (err) {
-        alert('Compute Gateway Error: ' + err.message);
+        alert('Inference Error: ' + err.message);
       } finally {
         btn.disabled = false;
         btn.innerText = 'Execute Arbitrage Inference ⚡';
