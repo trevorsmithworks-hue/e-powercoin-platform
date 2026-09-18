@@ -24,6 +24,7 @@
           <div class="flex items-center gap-2">
             <span class="font-black text-lg text-white">e-Cache ($PWC)</span>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Base (8453)</span>
+            <span id="header-price-badge" class="hidden sm:inline-flex text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">$0.00</span>
           </div>
           <p class="text-[10px] text-slate-400">Wholesale AI Compute & Energy Clearinghouse • e-powercoin.com</p>
         </div>
@@ -66,13 +67,19 @@
 
     <!-- TAB 1: ORIGINAL DASHBOARD -->
     <section id="tab-dashboard" class="space-y-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div class="glass-card rounded-2xl p-5 space-y-2">
           <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Wallet $PWC Balance</div>
           <div class="text-3xl font-black text-white" id="user-pwc-balance">5,000 PWC</div>
           <div class="text-xs font-semibold text-emerald-400 flex items-center gap-1">
             <span>●</span> +0.5% Reflection Tax Active
           </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 space-y-2">
+          <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Live Spot Price</div>
+          <div class="text-3xl font-black text-emerald-400" id="dash-live-price">$0.0000</div>
+          <div class="text-xs text-slate-400" id="dash-price-change">Uniswap v3 Base Feed</div>
         </div>
 
         <div class="glass-card rounded-2xl p-5 space-y-2">
@@ -217,8 +224,8 @@
         </div>
         <div class="glass-card rounded-2xl p-5 space-y-2 border-l-4 border-purple-400">
           <div class="text-xs font-semibold text-slate-400">Global $PWC Peg</div>
-          <div class="text-2xl font-black text-purple-300">0.1804 <span class="text-xs font-normal text-slate-400">kWh/PWC</span></div>
-          <div class="text-xs text-purple-400">Contract Benchmark Active</div>
+          <div class="text-2xl font-black text-purple-300" id="index-pwc-peg">0.1804 <span class="text-xs font-normal text-slate-400">kWh/PWC</span></div>
+          <div class="text-xs text-purple-400" id="index-pool-depth">Uniswap Pool Calibrated</div>
         </div>
       </div>
 
@@ -446,7 +453,7 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div class="glass-card rounded-2xl p-5 space-y-2 border-l-4 border-cyan-400">
           <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Curtailment State</div>
           <div class="text-2xl font-black text-cyan-300">Level 2 Surge</div>
@@ -454,8 +461,13 @@
         </div>
         <div class="glass-card rounded-2xl p-5 space-y-2 border-l-4 border-emerald-400">
           <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">24h Treasury Buybacks</div>
-          <div class="text-2xl font-black text-white">18,450 PWC</div>
+          <div class="text-2xl font-black text-white" id="surge-buybacks">18,450 PWC</div>
           <div class="text-xs text-emerald-400">80% Margin Pool Inflow</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 space-y-2 border-l-4 border-pink-400">
+          <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Uniswap v3 Liquidity</div>
+          <div class="text-2xl font-black text-pink-300" id="surge-liquidity">$0.00</div>
+          <div class="text-xs text-slate-400">Base On-Chain Depth</div>
         </div>
         <div class="glass-card rounded-2xl p-5 space-y-2 border-l-4 border-purple-400">
           <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Active Compute Load</div>
@@ -543,7 +555,7 @@
     </div>
   </footer>
 
-  <!-- Core Interactive Script & Base Contract Controller -->
+  <!-- Core Interactive Script, Base Contract Controller & DexScreener Pipeline -->
   <script>
     const PWC_CONTRACT = "0x061610342649ceC7Df2451127A84FDf3daa7418d";
     const ERC20_ABI = [
@@ -555,11 +567,64 @@
     let currentUser = localStorage.getItem('pwc_auth_user') || null;
     let provider = null;
     let signer = null;
+    let currentPwcPriceUsd = 0.00;
 
     if (currentUser) {
       updateAuthUI(currentUser);
       fetchLiveBaseBalance(currentUser);
     }
+
+    // Live DexScreener Pool Telemetry Reader
+    async function fetchLiveMarketData() {
+      try {
+        const res = await fetch('https://api.dexscreener.com/latest/dex/tokens/' + PWC_CONTRACT);
+        const data = await res.json();
+        if (data.pairs && data.pairs.length > 0) {
+          const pair = data.pairs[0];
+          currentPwcPriceUsd = parseFloat(pair.priceUsd) || 0.00;
+          const liquidityUsd = pair.liquidity?.usd || 0;
+          const change24h = pair.priceChange?.h24 || 0;
+
+          // Header Badge
+          const headerBadge = document.getElementById('header-price-badge');
+          if (headerBadge) {
+            headerBadge.innerText = '$' + currentPwcPriceUsd.toFixed(4);
+            headerBadge.classList.remove('hidden');
+          }
+
+          // Dashboard Live Spot Price Card
+          const dashPrice = document.getElementById('dash-live-price');
+          const dashChange = document.getElementById('dash-price-change');
+          if (dashPrice) dashPrice.innerText = '$' + currentPwcPriceUsd.toFixed(4);
+          if (dashChange) {
+            const sign = change24h >= 0 ? '+' : '';
+            dashChange.innerText = sign + change24h + '% 24h • Uniswap Base';
+            dashChange.className = change24h >= 0 ? 'text-xs text-emerald-400' : 'text-xs text-rose-400';
+          }
+
+          // Dynamic kWh Peg Calibration (Wholesale MWh benchmark average: ~$0.035/kWh)
+          const pegDisplay = document.getElementById('index-pwc-peg');
+          const poolDepthDisplay = document.getElementById('index-pool-depth');
+          if (pegDisplay && currentPwcPriceUsd > 0) {
+            const kwhPerPwc = (currentPwcPriceUsd / 0.035).toFixed(4);
+            pegDisplay.innerHTML = kwhPerPwc + ' <span class="text-xs font-normal text-slate-400">kWh/PWC</span>';
+          }
+          if (poolDepthDisplay && liquidityUsd > 0) {
+            poolDepthDisplay.innerText = '$' + Number(liquidityUsd).toLocaleString() + ' Liquidity Depth';
+          }
+
+          // Surge View Pool Depth Telemetry
+          const surgeLiq = document.getElementById('surge-liquidity');
+          if (surgeLiq) surgeLiq.innerText = '$' + Number(liquidityUsd).toLocaleString();
+        }
+      } catch (err) {
+        console.warn('DexScreener telemetry offline, using default metrics:', err.message);
+      }
+    }
+
+    // Call market data immediately, then refresh every 30 seconds
+    fetchLiveMarketData();
+    setInterval(fetchLiveMarketData, 30000);
 
     function openTradePool() {
       window.open('https://app.uniswap.org/swap?chain=base&outputCurrency=' + PWC_CONTRACT, '_blank');
@@ -777,7 +842,8 @@
         const reply = data.choices?.[0]?.message?.content || 'No reply.';
         const tokens = data.usage?.total_tokens || Math.ceil((text.length + reply.length) / 4);
         const kwh = (tokens * 0.0003).toFixed(5);
-        const pwc = (Number(kwh) / 0.1804).toFixed(4);
+        const pwcRate = currentPwcPriceUsd > 0 ? (currentPwcPriceUsd / 0.035) : 0.1804;
+        const pwc = (Number(kwh) / pwcRate).toFixed(4);
         const costUsd = ((tokens / 1000000) * 0.20).toFixed(5);
 
         if (tokenDisplay) tokenDisplay.innerText = Number(tokens).toLocaleString() + ' Tokens';
