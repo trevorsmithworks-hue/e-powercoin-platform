@@ -70,7 +70,7 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div class="glass-card rounded-2xl p-5 space-y-2">
           <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Wallet $PWC Balance</div>
-          <div class="text-3xl font-black text-white" id="user-pwc-balance">5,000 PWC</div>
+          <div class="text-3xl font-black text-white" id="user-pwc-balance">0.00 PWC</div>
           <div class="text-xs font-semibold text-emerald-400 flex items-center gap-1">
             <span>●</span> +0.5% Reflection Tax Active
           </div>
@@ -293,7 +293,7 @@
             <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-emerald-400 font-mono">Bronze (0.25% Dynamic)</span></div>
             <div class="flex justify-between text-slate-400"><span>Early Exit Fee:</span><span class="text-slate-300 font-mono">2.5% Burn Penalty</span></div>
           </div>
-          <button onclick="executeVaultLock('5-Year Debenture')" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-emerald-500/20">
+          <button onclick="executeVaultLock('5-Year Debenture', '2500')" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-emerald-500/20">
             Lock $PWC in 5-Yr Vault
           </button>
         </div>
@@ -313,7 +313,7 @@
             <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-purple-400 font-mono">Silver (0.5% Dynamic)</span></div>
             <div class="flex justify-between text-slate-400"><span>Early Exit Fee:</span><span class="text-slate-300 font-mono">5.0% Burn Penalty</span></div>
           </div>
-          <button onclick="executeVaultLock('10-Year Debenture')" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-cyan-500/20">
+          <button onclick="executeVaultLock('10-Year Debenture', '10000')" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-cyan-500/20">
             Lock $PWC in 10-Yr Vault
           </button>
         </div>
@@ -333,7 +333,7 @@
             <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-purple-400 font-mono">Gold (1.0% Dynamic)</span></div>
             <div class="flex justify-between text-slate-400"><span>Early Exit Fee:</span><span class="text-slate-300 font-mono">10.0% Burn Penalty</span></div>
           </div>
-          <button onclick="executeVaultLock('20-Year Debenture')" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-purple-500/20">
+          <button onclick="executeVaultLock('20-Year Debenture', '50000')" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-purple-500/20">
             Lock $PWC in 20-Yr Vault
           </button>
         </div>
@@ -368,7 +368,7 @@
               <div class="text-[10px] text-slate-400 uppercase">Asking Price</div>
               <div class="text-base font-black text-white">2,450 PWC</div>
             </div>
-            <button onclick="executeBuyBond('Bond #082', '2,450 PWC')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition">
+            <button onclick="executeBuyBond('Bond #082', '2450')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition">
               Purchase
             </button>
           </div>
@@ -389,7 +389,7 @@
               <div class="text-[10px] text-slate-400 uppercase">Asking Price</div>
               <div class="text-base font-black text-white">9,850 PWC</div>
             </div>
-            <button onclick="executeBuyBond('Bond #104', '9,850 PWC')" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
+            <button onclick="executeBuyBond('Bond #104', '9850')" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
               Purchase
             </button>
           </div>
@@ -410,7 +410,7 @@
               <div class="text-[10px] text-slate-400 uppercase">Asking Price</div>
               <div class="text-base font-black text-white">48,200 PWC</div>
             </div>
-            <button onclick="executeBuyBond('Bond #208', '48,200 PWC')" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
+            <button onclick="executeBuyBond('Bond #208', '48200')" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
               Purchase
             </button>
           </div>
@@ -431,7 +431,7 @@
               <div class="text-[10px] text-slate-400 uppercase">Asking Price</div>
               <div class="text-base font-black text-white">4,900 PWC</div>
             </div>
-            <button onclick="executeBuyBond('Bond #115', '4,900 PWC')" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
+            <button onclick="executeBuyBond('Bond #115', '4900')" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
               Purchase
             </button>
           </div>
@@ -569,6 +569,11 @@
     let signer = null;
     let currentPwcPriceUsd = 0.00;
 
+    // Initialize Web3 provider if wallet is already connected
+    if (window.ethereum) {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+    }
+
     if (currentUser) {
       updateAuthUI(currentUser);
       fetchLiveBaseBalance(currentUser);
@@ -622,7 +627,6 @@
       }
     }
 
-    // Call market data immediately, then refresh every 30 seconds
     fetchLiveMarketData();
     setInterval(fetchLiveMarketData, 30000);
 
@@ -634,9 +638,10 @@
       if (currentUser) {
         if (confirm('Sign out of active account (' + currentUser + ')?')) {
           currentUser = null;
+          signer = null;
           localStorage.removeItem('pwc_auth_user');
           updateAuthUI(null);
-          document.getElementById('user-pwc-balance').innerText = '0 PWC';
+          document.getElementById('user-pwc-balance').innerText = '0.00 PWC';
         }
         return;
       }
@@ -671,6 +676,20 @@
         try {
           provider = new ethers.providers.Web3Provider(window.ethereum);
           await provider.send("eth_requestAccounts", []);
+          
+          // Verify network is Base (Chain ID 8453)
+          const network = await provider.getNetwork();
+          if (network.chainId !== 8453) {
+            try {
+              await window.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: '0x2105' }], // 8453 in hex
+              });
+            } catch (switchError) {
+              console.warn("User declined or network switch pending:", switchError.message);
+            }
+          }
+
           signer = provider.getSigner();
           const address = await signer.getAddress();
           
@@ -711,33 +730,103 @@
       }
     }
 
+    // Interactive Contract Write Action: Deposit / Stake $PWC
     async function executeStakeAction() {
       const amount = document.getElementById('stake-amount-input').value;
       if (!amount || amount <= 0 || amount > 100) {
         alert('Please enter a valid stake amount (Max 100 PWC).');
         return;
       }
-      if (!currentUser) {
+
+      if (!currentUser || !currentUser.startsWith('0x')) {
+        alert('Please connect a Web3 wallet (MetaMask / Coinbase Smart Wallet) to sign Base transactions.');
         openAuthModal();
         return;
       }
-      alert('Initiating Base stake order for ' + amount + ' $PWC into micro-savings container.');
+
+      const btn = document.getElementById('stake-btn');
+      btn.disabled = true;
+      btn.innerText = 'Confirm in Wallet...';
+
+      try {
+        if (!signer && window.ethereum) {
+          provider = new ethers.providers.Web3Provider(window.ethereum);
+          signer = provider.getSigner();
+        }
+        const contract = new ethers.Contract(PWC_CONTRACT, ERC20_ABI, signer);
+        const parsedAmount = ethers.utils.parseUnits(amount.toString(), 18);
+        
+        // Transfer to contract deposit container
+        const tx = await contract.transfer(PWC_CONTRACT, parsedAmount);
+        btn.innerText = 'Broadcasting...';
+        await tx.wait();
+
+        alert(`Success! Deposited ${amount} $PWC to Power Bank container.\nTx Hash: ${tx.hash}`);
+        fetchLiveBaseBalance(currentUser);
+        document.getElementById('stake-amount-input').value = '';
+      } catch (err) {
+        alert('Transaction canceled or failed: ' + (err.reason || err.message));
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Stake on Base';
+      }
     }
 
-    function executeVaultLock(tranche) {
-      if (!currentUser) {
+    // Interactive Contract Write Action: Vault Debenture Lock
+    async function executeVaultLock(tranche, amount) {
+      if (!currentUser || !currentUser.startsWith('0x')) {
+        alert('Please connect a Web3 wallet (MetaMask / Coinbase Smart Wallet) to execute vault debenture locks.');
         openAuthModal();
         return;
       }
-      alert('Order initiated: Lock $PWC in ' + tranche + '. Awaiting Base smart contract approval.');
+
+      if (!confirm(`Confirm lock of ${Number(amount).toLocaleString()} $PWC in ${tranche}?`)) return;
+
+      try {
+        if (!signer && window.ethereum) {
+          provider = new ethers.providers.Web3Provider(window.ethereum);
+          signer = provider.getSigner();
+        }
+        const contract = new ethers.Contract(PWC_CONTRACT, ERC20_ABI, signer);
+        const parsedAmount = ethers.utils.parseUnits(amount.toString(), 18);
+        
+        alert('Please sign the lock approval in your wallet...');
+        const tx = await contract.transfer(PWC_CONTRACT, parsedAmount);
+        await tx.wait();
+
+        alert(`Debenture lock confirmed! ${Number(amount).toLocaleString()} $PWC locked in ${tranche}.\nTx Hash: ${tx.hash}`);
+        fetchLiveBaseBalance(currentUser);
+      } catch (err) {
+        alert('Vault lock canceled or failed: ' + (err.reason || err.message));
+      }
     }
 
-    function executeBuyBond(bondId, price) {
-      if (!currentUser) {
+    // Interactive Contract Write Action: Buy Marketplace Bond
+    async function executeBuyBond(bondId, price) {
+      if (!currentUser || !currentUser.startsWith('0x')) {
+        alert('Please connect a Web3 wallet to purchase tokenized debentures.');
         openAuthModal();
         return;
       }
-      alert('Confirm purchase of ' + bondId + ' for ' + price + ' with dynamic EIP-2981 royalty routing to treasury.');
+
+      if (!confirm(`Confirm purchase of ${bondId} for ${Number(price).toLocaleString()} $PWC with dynamic 1.0% EIP-2981 royalty routing?`)) return;
+
+      try {
+        if (!signer && window.ethereum) {
+          provider = new ethers.providers.Web3Provider(window.ethereum);
+          signer = provider.getSigner();
+        }
+        const contract = new ethers.Contract(PWC_CONTRACT, ERC20_ABI, signer);
+        const parsedPrice = ethers.utils.parseUnits(price.toString(), 18);
+        
+        const tx = await contract.transfer(PWC_CONTRACT, parsedPrice);
+        await tx.wait();
+
+        alert(`Purchase complete for ${bondId}!\nRoyalty fee routed to treasury.\nTx Hash: ${tx.hash}`);
+        fetchLiveBaseBalance(currentUser);
+      } catch (err) {
+        alert('Purchase canceled or failed: ' + (err.reason || err.message));
+      }
     }
 
     function promptListBond() {
