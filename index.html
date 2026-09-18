@@ -17,44 +17,41 @@
 <body class="min-h-screen flex flex-col justify-between">
   <!-- Top Navigation Bar -->
   <header class="border-b border-slate-800 bg-slate-950/90 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2.5 flex-shrink-0">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-cyan-500/20 flex-shrink-0">⚡</div>
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 h-16 flex items-center justify-between gap-1 sm:gap-2">
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-slate-950 text-base sm:text-xl shadow-lg shadow-cyan-500/20 flex-shrink-0">⚡</div>
         <div class="whitespace-nowrap">
           <div class="flex items-center gap-1.5">
-            <span class="font-black text-base md:text-lg text-white">e-Cache ($PWC)</span>
-            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Base (8453)</span>
-            <span id="header-price-badge" class="inline-flex text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">$1.8000</span>
+            <span class="font-black text-sm sm:text-base text-white">e-Cache ($PWC)</span>
+            <span class="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Base</span>
+            <span id="header-price-badge" class="inline-flex text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">$1.8000</span>
           </div>
-          <p class="text-[10px] text-slate-400 hidden sm:block">Wholesale AI Compute & Energy Clearinghouse • e-powercoin.com</p>
+          <p class="text-[9px] text-slate-400 hidden md:block">AI Compute & Energy Clearinghouse • e-powercoin.com</p>
         </div>
       </div>
 
-      <!-- Navigation Tabs with Active Statuses -->
-      <nav class="hidden xl:flex items-center gap-1 flex-shrink-0">
-        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-white shadow transition whitespace-nowrap">Dashboard</button>
-        <button onclick="switchTab('compute')" id="nav-compute" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition whitespace-nowrap">⚡ AI Compute ($ePT)</button>
-        <button onclick="switchTab('index')" id="nav-index" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition whitespace-nowrap">📈 Energy Index</button>
-        <button onclick="switchTab('vault')" id="nav-vault" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition whitespace-nowrap">🏛️ Vault</button>
-        <button onclick="switchTab('marketplace')" id="nav-marketplace" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition whitespace-nowrap">🏪 Marketplace</button>
-        <button onclick="switchTab('surge')" id="nav-surge" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 flex items-center gap-1.5 hover:bg-cyan-500/20 transition whitespace-nowrap">
+      <!-- Navigation Tabs -->
+      <nav class="hidden lg:flex items-center gap-1 flex-shrink">
+        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-white shadow transition whitespace-nowrap">Dashboard</button>
+        <button onclick="switchTab('compute')" id="nav-compute" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition whitespace-nowrap">⚡ AI Compute</button>
+        <button onclick="switchTab('index')" id="nav-index" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition whitespace-nowrap">📈 Energy Index</button>
+        <button onclick="switchTab('vault')" id="nav-vault" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition whitespace-nowrap">🏛️ Vault</button>
+        <button onclick="switchTab('marketplace')" id="nav-marketplace" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition whitespace-nowrap">🏪 Market</button>
+        <button onclick="switchTab('surge')" id="nav-surge" class="px-2 py-1 rounded-lg text-[11px] font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 flex items-center gap-1 hover:bg-cyan-500/20 transition whitespace-nowrap">
           <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 pulse-dot"></span> Grid Surge
         </button>
-        <span class="ml-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5 whitespace-nowrap">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Power Credits
-        </span>
       </nav>
 
-      <div class="flex items-center gap-2 flex-shrink-0">
-        <button onclick="openTradePool()" class="px-3 py-1.5 bg-pink-600/20 hover:bg-pink-600/30 border border-pink-500/40 text-pink-300 rounded-xl text-xs font-bold transition flex items-center gap-1 whitespace-nowrap">
-          <span>Trade $PWC</span>
+      <!-- Right Action Toolbar -->
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+        <button onclick="openTradePool()" class="px-2 sm:px-3 py-1.5 bg-pink-600/20 hover:bg-pink-600/30 border border-pink-500/40 text-pink-300 rounded-xl text-xs font-bold transition flex items-center gap-1 whitespace-nowrap">
+          <span>Trade</span>
           <span class="text-[10px]">↗</span>
         </button>
-        <button onclick="manageApiKey()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition whitespace-nowrap" id="key-btn">
-          ⚙️ Set API Key
+        <button onclick="manageApiKey()" class="px-2 sm:px-2.5 py-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded-xl text-xs font-semibold transition whitespace-nowrap" id="key-btn">
+          🔒 Proxy Active
         </button>
-        <!-- Single Unified Auth Button -->
-        <button onclick="openAuthModal()" id="auth-btn" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-blue-500/20 whitespace-nowrap">
+        <button onclick="openAuthModal()" id="auth-btn" class="px-2.5 sm:px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-blue-500/20 whitespace-nowrap">
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span id="auth-label">Sign In / Connect</span>
         </button>
@@ -131,7 +128,7 @@
       </div>
     </section>
 
-    <!-- TAB 2: WHOLESALE AI COMPUTE GATEWAY (LIVE INFERENCE) -->
+    <!-- TAB 2: WHOLESALE AI COMPUTE GATEWAY -->
     <section id="tab-compute" class="hidden space-y-6">
       <div class="flex flex-col md:flex-row justify-between md:items-end gap-4 border-b border-slate-800 pb-4">
         <div>
@@ -149,7 +146,7 @@
       <div class="glass-card rounded-2xl p-6 space-y-5">
         <div class="flex justify-between items-center">
           <h2 class="text-sm font-bold uppercase tracking-wider text-slate-300">Interactive Model Router Test</h2>
-          <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Live OpenRouter Pipeline</span>
+          <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Cloudflare Edge Proxy Active</span>
         </div>
 
         <div class="space-y-4">
@@ -199,7 +196,7 @@
       </div>
     </section>
 
-    <!-- TAB 3: ENERGY INDEX (REGIONAL CLEARING MATRIX) -->
+    <!-- TAB 3: ENERGY INDEX -->
     <section id="tab-index" class="hidden space-y-6">
       <div class="border-b border-slate-800 pb-4">
         <h2 class="text-2xl font-black text-white">Global Energy Clearing Index</h2>
@@ -270,7 +267,7 @@
       </div>
     </section>
 
-    <!-- TAB 4: POWER BLOCK BOND VAULT (5-YR, 10-YR, 20-YR TRANCHES) -->
+    <!-- TAB 4: VAULT -->
     <section id="tab-vault" class="hidden space-y-6">
       <div class="border-b border-slate-800 pb-4">
         <h2 class="text-2xl font-black text-white">Power Block Bond Vault</h2>
@@ -278,7 +275,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- 5-Year Debenture Card -->
         <div class="glass-card rounded-2xl p-6 space-y-5 border-t-4 border-emerald-500">
           <div class="flex justify-between items-start">
             <div>
@@ -298,7 +294,6 @@
           </button>
         </div>
 
-        <!-- 10-Year Debenture Card -->
         <div class="glass-card rounded-2xl p-6 space-y-5 border-t-4 border-cyan-500">
           <div class="flex justify-between items-start">
             <div>
@@ -318,7 +313,6 @@
           </button>
         </div>
 
-        <!-- 20-Year Debenture Card -->
         <div class="glass-card rounded-2xl p-6 space-y-5 border-t-4 border-purple-500">
           <div class="flex justify-between items-start">
             <div>
@@ -340,7 +334,7 @@
       </div>
     </section>
 
-    <!-- TAB 5: SECONDARY BOND MARKETPLACE -->
+    <!-- TAB 5: MARKETPLACE -->
     <section id="tab-marketplace" class="hidden space-y-6">
       <div class="flex flex-col md:flex-row justify-between md:items-end gap-4 border-b border-slate-800 pb-4">
         <div>
@@ -353,7 +347,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <!-- Listing 1 (5-Year Note) -->
         <div class="glass-card rounded-2xl p-5 space-y-4">
           <div class="flex justify-between items-center">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Bond #082</span>
@@ -374,7 +367,6 @@
           </div>
         </div>
 
-        <!-- Listing 2 (10-Year Note) -->
         <div class="glass-card rounded-2xl p-5 space-y-4">
           <div class="flex justify-between items-center">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Bond #104</span>
@@ -395,7 +387,6 @@
           </div>
         </div>
 
-        <!-- Listing 3 (20-Year Note) -->
         <div class="glass-card rounded-2xl p-5 space-y-4">
           <div class="flex justify-between items-center">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Bond #208</span>
@@ -416,7 +407,6 @@
           </div>
         </div>
 
-        <!-- Listing 4 (10-Year Note) -->
         <div class="glass-card rounded-2xl p-5 space-y-4">
           <div class="flex justify-between items-center">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Bond #115</span>
@@ -439,7 +429,7 @@
       </div>
     </section>
 
-    <!-- TAB 6: GRID SURGE TELEMETRY VIEW -->
+    <!-- TAB 6: GRID SURGE VIEW -->
     <section id="tab-surge" class="hidden space-y-6">
       <div class="flex flex-col md:flex-row justify-between md:items-end gap-4 border-b border-slate-800 pb-4">
         <div>
@@ -507,7 +497,6 @@
       </p>
 
       <div class="space-y-3">
-        <!-- Corporate / Individual Email Passcode Sign In -->
         <div class="space-y-2">
           <label class="block text-xs font-semibold text-slate-300">Corporate or Personal Email</label>
           <div class="flex gap-2">
@@ -524,7 +513,6 @@
           <div class="flex-grow border-t border-slate-800"></div>
         </div>
 
-        <!-- Web3 Direct Connection Option -->
         <button onclick="connectWeb3Wallet()" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-white flex items-center justify-center gap-2.5 transition">
           <span class="w-3 h-3 rounded-full bg-blue-500"></span>
           <span>Coinbase Smart Wallet / MetaMask</span>
@@ -539,7 +527,7 @@
     </div>
   </div>
 
-  <!-- Verified Project Footer with Direct Contact Addresses -->
+  <!-- Verified Project Footer -->
   <footer class="border-t border-slate-800/80 py-6 bg-slate-950/80 text-center text-xs text-slate-400 space-y-2">
     <div>
       <span>© 2026 e-Cache Clearinghouse</span>
@@ -555,7 +543,7 @@
     </div>
   </footer>
 
-  <!-- Core Interactive Script, Base Contract Controller & Fallback Telemetry Pipeline -->
+  <!-- Interactive Logic, Base Contract Controller & Pre-Wired Serverless Proxy Pipeline -->
   <script>
     const PWC_CONTRACT = "0x061610342649ceC7Df2451127A84FDf3daa7418d";
     const ERC20_ABI = [
@@ -569,6 +557,11 @@
     let signer = null;
     let currentPwcPriceUsd = 1.8000;
 
+    // Direct Pre-Wired Cloudflare Serverless Proxy
+    const DEFAULT_PROXY_URL = "https://epower-inference-proxy.trevorsmithworks.workers.dev";
+    let PROXY_URL = localStorage.getItem('pwc_proxy_url') || DEFAULT_PROXY_URL;
+    let openRouterKey = localStorage.getItem('pwc_openrouter_key') || "";
+
     if (window.ethereum) {
       provider = new ethers.providers.Web3Provider(window.ethereum);
     }
@@ -578,7 +571,6 @@
       fetchLiveBaseBalance(currentUser);
     }
 
-    // Resilient Market Telemetry: Queries DexScreener with baseline fallback
     async function fetchLiveMarketData() {
       try {
         const res = await fetch('https://api.dexscreener.com/latest/dex/tokens/' + PWC_CONTRACT);
@@ -586,19 +578,13 @@
         if (data.pairs && data.pairs.length > 0) {
           const pair = data.pairs[0];
           const rawPrice = parseFloat(pair.priceUsd);
-          if (rawPrice > 0) {
-            currentPwcPriceUsd = rawPrice;
-          }
+          if (rawPrice > 0) currentPwcPriceUsd = rawPrice;
           const liquidityUsd = pair.liquidity?.usd || 125000;
           const change24h = pair.priceChange?.h24 || 0;
 
-          // Header Badge
           const headerBadge = document.getElementById('header-price-badge');
-          if (headerBadge) {
-            headerBadge.innerText = '$' + currentPwcPriceUsd.toFixed(4);
-          }
+          if (headerBadge) headerBadge.innerText = '$' + currentPwcPriceUsd.toFixed(4);
 
-          // Dashboard Live Spot Price Card
           const dashPrice = document.getElementById('dash-live-price');
           const dashChange = document.getElementById('dash-price-change');
           if (dashPrice) dashPrice.innerText = '$' + currentPwcPriceUsd.toFixed(4);
@@ -608,7 +594,6 @@
             dashChange.className = change24h >= 0 ? 'text-xs text-emerald-400' : 'text-xs text-rose-400';
           }
 
-          // Dynamic kWh Peg Calibration (Wholesale MWh benchmark average: ~$0.035/kWh)
           const pegDisplay = document.getElementById('index-pwc-peg');
           const poolDepthDisplay = document.getElementById('index-pool-depth');
           if (pegDisplay) {
@@ -619,7 +604,6 @@
             poolDepthDisplay.innerText = '$' + Number(liquidityUsd).toLocaleString() + ' Liquidity Depth';
           }
 
-          // Surge View Pool Depth Telemetry
           const surgeLiq = document.getElementById('surge-liquidity');
           if (surgeLiq) surgeLiq.innerText = '$' + Number(liquidityUsd).toLocaleString();
         }
@@ -686,7 +670,7 @@
                 params: [{ chainId: '0x2105' }],
               });
             } catch (switchError) {
-              console.warn("User declined or network switch pending:", switchError.message);
+              console.warn("Network switch pending:", switchError.message);
             }
           }
 
@@ -702,7 +686,7 @@
           alert('Wallet connection aborted: ' + err.message);
         }
       } else {
-        alert('No Web3 wallet detected. Please enter your email above to continue or open this link in Coinbase Wallet.');
+        alert('No Web3 wallet detected. Please enter your email above or open inside Coinbase Wallet.');
       }
     }
 
@@ -738,7 +722,7 @@
       }
 
       if (!currentUser || !currentUser.startsWith('0x')) {
-        alert('Please connect a Web3 wallet (MetaMask / Coinbase Smart Wallet) to sign Base transactions.');
+        alert('Please connect a Web3 wallet to sign Base transactions.');
         openAuthModal();
         return;
       }
@@ -772,7 +756,7 @@
 
     async function executeVaultLock(tranche, amount) {
       if (!currentUser || !currentUser.startsWith('0x')) {
-        alert('Please connect a Web3 wallet (MetaMask / Coinbase Smart Wallet) to execute vault debenture locks.');
+        alert('Please connect a Web3 wallet to execute vault debenture locks.');
         openAuthModal();
         return;
       }
@@ -834,25 +818,20 @@
       if (bondId) alert('Listing request for Bond #' + bondId + ' submitted to mempool.');
     }
 
-    let openRouterKey = localStorage.getItem('pwc_openrouter_key') || '';
-    updateKeyButtonUI();
-
-    function updateKeyButtonUI() {
-      const btn = document.getElementById('key-btn');
-      if (btn) {
-        btn.innerText = openRouterKey ? '🔑 Key Active' : '⚙️ Set API Key';
-        btn.className = openRouterKey 
-          ? 'px-3 py-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded-xl text-xs font-semibold whitespace-nowrap'
-          : 'px-3 py-1.5 bg-slate-800 text-slate-300 border border-slate-700 rounded-xl text-xs font-semibold whitespace-nowrap';
-      }
-    }
-
     function manageApiKey() {
-      const input = prompt('Enter your OpenRouter API Key (sk-or-v1-...):', openRouterKey);
-      if (input !== null) {
-        openRouterKey = input.trim();
-        localStorage.setItem('pwc_openrouter_key', openRouterKey);
-        updateKeyButtonUI();
+      const choice = prompt('Enter 1 to set Cloudflare Worker Proxy URL, or 2 to set direct OpenRouter Key:', '1');
+      if (choice === '1') {
+        const url = prompt('Enter your Cloudflare Worker URL:', PROXY_URL);
+        if (url !== null) {
+          PROXY_URL = url.trim() || DEFAULT_PROXY_URL;
+          localStorage.setItem('pwc_proxy_url', PROXY_URL);
+        }
+      } else if (choice === '2') {
+        const key = prompt('Enter your OpenRouter API Key (sk-or-v1-...):', openRouterKey);
+        if (key !== null) {
+          openRouterKey = key.trim();
+          localStorage.setItem('pwc_openrouter_key', openRouterKey);
+        }
       }
     }
 
@@ -897,31 +876,38 @@
         return;
       }
 
-      if (!openRouterKey) {
-        manageApiKey();
-        if (!openRouterKey) return;
-      }
-
       btn.disabled = true;
-      btn.innerText = 'Routing Compute...';
+      btn.innerText = 'Routing Compute via Cloudflare...';
 
       try {
-        const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer ' + openRouterKey,
-            'HTTP-Referer': 'https://e-powercoin.com',
-            'X-Title': 'e-Cache Compute Clearinghouse',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            model: modelSelect ? modelSelect.value : 'openrouter/free',
-            messages: [{ role: 'user', content: text }]
-          })
-        });
+        let res;
+        if (PROXY_URL) {
+          res = await fetch(PROXY_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              model: modelSelect ? modelSelect.value : 'openrouter/free',
+              prompt: text
+            })
+          });
+        } else {
+          res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + openRouterKey,
+              'HTTP-Referer': 'https://e-powercoin.com',
+              'X-Title': 'e-Cache Compute Clearinghouse',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              model: modelSelect ? modelSelect.value : 'openrouter/free',
+              messages: [{ role: 'user', content: text }]
+            })
+          });
+        }
 
         const data = await res.json();
-        if (data.error) throw new Error(data.error.message);
+        if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
 
         const reply = data.choices?.[0]?.message?.content || 'No reply.';
         const tokens = data.usage?.total_tokens || Math.ceil((text.length + reply.length) / 4);
