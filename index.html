@@ -51,7 +51,13 @@
         <button onclick="manageApiKey()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition" id="key-btn">
           ⚙️ Set API Key
         </button>
-        <button onclick="openAuthModal()" id="auth-btn" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-blue-500/20">
+        <!-- Specific Sign In to Account Option -->
+        <button onclick="openAuthModal('email')" id="account-btn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+          <span>🔑</span>
+          <span id="account-label">Sign In / Account</span>
+        </button>
+        <!-- Web3 Direct Wallet Connector -->
+        <button onclick="openAuthModal('wallet')" id="auth-btn" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-blue-500/20">
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span id="auth-label">Connect Wallet</span>
         </button>
@@ -261,30 +267,50 @@
       </div>
     </section>
 
-    <!-- TAB 4: POWER BLOCK BOND VAULT -->
+    <!-- TAB 4: POWER BLOCK BOND VAULT (5-YR, 10-YR, 20-YR TRANCHES) -->
     <section id="tab-vault" class="hidden space-y-6">
       <div class="border-b border-slate-800 pb-4">
         <h2 class="text-2xl font-black text-white">Power Block Bond Vault</h2>
         <p class="text-xs text-slate-400 mt-1">Lock $PWC into institutional debentures for predictable yield and wholesale compute allocations.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 5-Year Debenture Card -->
+        <div class="glass-card rounded-2xl p-6 space-y-5 border-t-4 border-emerald-500">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400">Class-B Standard</span>
+              <h3 class="text-lg font-black text-white mt-1">5-Year Power Debenture</h3>
+            </div>
+            <span class="text-xs font-black px-2.5 py-1 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 rounded-xl">5.2% APY</span>
+          </div>
+          <p class="text-xs text-slate-400">Short-duration baseline energy block backed by municipal grid arbitrage. Semi-annual distributions in $PWC.</p>
+          <div class="bg-slate-900/80 p-3.5 rounded-xl space-y-2 text-xs">
+            <div class="flex justify-between text-slate-400"><span>Lock Period:</span><span class="text-white font-mono">5 Years (1,825 Days)</span></div>
+            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-emerald-400 font-mono">Bronze (0.25% Dynamic)</span></div>
+            <div class="flex justify-between text-slate-400"><span>Early Exit Fee:</span><span class="text-slate-300 font-mono">2.5% Burn Penalty</span></div>
+          </div>
+          <button onclick="executeVaultLock('5-Year Debenture')" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-emerald-500/20">
+            Lock $PWC in 5-Yr Vault
+          </button>
+        </div>
+
         <!-- 10-Year Debenture Card -->
         <div class="glass-card rounded-2xl p-6 space-y-5 border-t-4 border-cyan-500">
           <div class="flex justify-between items-start">
             <div>
               <span class="text-[10px] font-mono uppercase tracking-wider text-cyan-400">Class-A Tranche</span>
-              <h3 class="text-xl font-black text-white mt-1">10-Year Power Debenture</h3>
+              <h3 class="text-lg font-black text-white mt-1">10-Year Power Debenture</h3>
             </div>
-            <span class="text-sm font-black px-3 py-1 bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 rounded-xl">8.4% APY</span>
+            <span class="text-xs font-black px-2.5 py-1 bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 rounded-xl">8.4% APY</span>
           </div>
           <p class="text-xs text-slate-400">Secured against institutional data center power purchase agreements. Quarterly reflection distributions in $PWC.</p>
-          <div class="bg-slate-900/80 p-4 rounded-xl space-y-2 text-xs">
+          <div class="bg-slate-900/80 p-3.5 rounded-xl space-y-2 text-xs">
             <div class="flex justify-between text-slate-400"><span>Lock Period:</span><span class="text-white font-mono">10 Years (3,650 Days)</span></div>
-            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-purple-400 font-mono">Silver Tier (0.5% Dynamic)</span></div>
+            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-purple-400 font-mono">Silver (0.5% Dynamic)</span></div>
             <div class="flex justify-between text-slate-400"><span>Early Exit Fee:</span><span class="text-slate-300 font-mono">5.0% Burn Penalty</span></div>
           </div>
-          <button onclick="executeVaultLock('10-Year Debenture')" class="w-full py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-cyan-500/20">
+          <button onclick="executeVaultLock('10-Year Debenture')" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-cyan-500/20">
             Lock $PWC in 10-Yr Vault
           </button>
         </div>
@@ -294,17 +320,17 @@
           <div class="flex justify-between items-start">
             <div>
               <span class="text-[10px] font-mono uppercase tracking-wider text-purple-400">Class-AAA Sovereign</span>
-              <h3 class="text-xl font-black text-white mt-1">20-Year Power Debenture</h3>
+              <h3 class="text-lg font-black text-white mt-1">20-Year Power Debenture</h3>
             </div>
-            <span class="text-sm font-black px-3 py-1 bg-purple-500/20 border border-purple-500/40 text-purple-300 rounded-xl">14.8% APY</span>
+            <span class="text-xs font-black px-2.5 py-1 bg-purple-500/20 border border-purple-500/40 text-purple-300 rounded-xl">14.8% APY</span>
           </div>
           <p class="text-xs text-slate-400">Institutional long-term baseline infrastructure debenture with non-expiring wholesale $ePT buffers.</p>
-          <div class="bg-slate-900/80 p-4 rounded-xl space-y-2 text-xs">
+          <div class="bg-slate-900/80 p-3.5 rounded-xl space-y-2 text-xs">
             <div class="flex justify-between text-slate-400"><span>Lock Period:</span><span class="text-white font-mono">20 Years (7,300 Days)</span></div>
-            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-purple-400 font-mono">Gold Tier (1.0% Dynamic)</span></div>
+            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-purple-400 font-mono">Gold (1.0% Dynamic)</span></div>
             <div class="flex justify-between text-slate-400"><span>Early Exit Fee:</span><span class="text-slate-300 font-mono">10.0% Burn Penalty</span></div>
           </div>
-          <button onclick="executeVaultLock('20-Year Debenture')" class="w-full py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-purple-500/20">
+          <button onclick="executeVaultLock('20-Year Debenture')" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-purple-500/20">
             Lock $PWC in 20-Yr Vault
           </button>
         </div>
@@ -323,66 +349,87 @@
         </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- Listing 1 -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <!-- Listing 1 (5-Year Note) -->
+        <div class="glass-card rounded-2xl p-5 space-y-4">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Bond #082</span>
+            <span class="text-xs text-slate-400 font-mono">1,620 Days Left</span>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-white">2,500 $PWC 5-Yr Note</h4>
+            <p class="text-[11px] text-slate-400 mt-0.5">Accrued Yield: 65 PWC • 5.2% APY</p>
+          </div>
+          <div class="flex justify-between items-end border-t border-slate-800/80 pt-3">
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase">Asking Price</div>
+              <div class="text-base font-black text-white">2,450 PWC</div>
+            </div>
+            <button onclick="executeBuyBond('Bond #082', '2,450 PWC')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition">
+              Purchase
+            </button>
+          </div>
+        </div>
+
+        <!-- Listing 2 (10-Year Note) -->
         <div class="glass-card rounded-2xl p-5 space-y-4">
           <div class="flex justify-between items-center">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Bond #104</span>
             <span class="text-xs text-slate-400 font-mono">3,420 Days Left</span>
           </div>
           <div>
-            <h4 class="text-base font-bold text-white">10,000 $PWC 10-Yr Note</h4>
+            <h4 class="text-sm font-bold text-white">10,000 $PWC 10-Yr Note</h4>
             <p class="text-[11px] text-slate-400 mt-0.5">Accrued Yield: 412 PWC • 8.4% APY</p>
           </div>
           <div class="flex justify-between items-end border-t border-slate-800/80 pt-3">
             <div>
               <div class="text-[10px] text-slate-400 uppercase">Asking Price</div>
-              <div class="text-lg font-black text-white">9,850 PWC</div>
+              <div class="text-base font-black text-white">9,850 PWC</div>
             </div>
-            <button onclick="executeBuyBond('Bond #104', '9,850 PWC')" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
-              Purchase Bond
+            <button onclick="executeBuyBond('Bond #104', '9,850 PWC')" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
+              Purchase
             </button>
           </div>
         </div>
 
-        <!-- Listing 2 -->
+        <!-- Listing 3 (20-Year Note) -->
         <div class="glass-card rounded-2xl p-5 space-y-4">
           <div class="flex justify-between items-center">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Bond #208</span>
             <span class="text-xs text-slate-400 font-mono">6,950 Days Left</span>
           </div>
           <div>
-            <h4 class="text-base font-bold text-white">50,000 $PWC 20-Yr Note</h4>
+            <h4 class="text-sm font-bold text-white">50,000 $PWC 20-Yr Note</h4>
             <p class="text-[11px] text-slate-400 mt-0.5">Accrued Yield: 2,150 PWC • 14.8% APY</p>
           </div>
           <div class="flex justify-between items-end border-t border-slate-800/80 pt-3">
             <div>
               <div class="text-[10px] text-slate-400 uppercase">Asking Price</div>
-              <div class="text-lg font-black text-white">48,200 PWC</div>
+              <div class="text-base font-black text-white">48,200 PWC</div>
             </div>
-            <button onclick="executeBuyBond('Bond #208', '48,200 PWC')" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
-              Purchase Bond
+            <button onclick="executeBuyBond('Bond #208', '48,200 PWC')" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
+              Purchase
             </button>
           </div>
         </div>
 
-        <!-- Listing 3 -->
+        <!-- Listing 4 (10-Year Note) -->
         <div class="glass-card rounded-2xl p-5 space-y-4">
           <div class="flex justify-between items-center">
             <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Bond #115</span>
             <span class="text-xs text-slate-400 font-mono">3,100 Days Left</span>
           </div>
           <div>
-            <h4 class="text-base font-bold text-white">5,000 $PWC 10-Yr Note</h4>
+            <h4 class="text-sm font-bold text-white">5,000 $PWC 10-Yr Note</h4>
             <p class="text-[11px] text-slate-400 mt-0.5">Accrued Yield: 180 PWC • 8.4% APY</p>
           </div>
           <div class="flex justify-between items-end border-t border-slate-800/80 pt-3">
             <div>
               <div class="text-[10px] text-slate-400 uppercase">Asking Price</div>
-              <div class="text-lg font-black text-white">4,900 PWC</div>
+              <div class="text-base font-black text-white">4,900 PWC</div>
             </div>
-            <button onclick="executeBuyBond('Bond #115', '4,900 PWC')" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
-              Purchase Bond
+            <button onclick="executeBuyBond('Bond #115', '4,900 PWC')" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl transition">
+              Purchase
             </button>
           </div>
         </div>
@@ -390,40 +437,40 @@
     </section>
   </main>
 
-  <!-- Enterprise / Hybrid Authentication Modal -->
+  <!-- Enterprise / Personal Sign-In Authentication Modal -->
   <div id="auth-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
     <div class="glass-card bg-slate-950/95 border border-slate-800 rounded-2xl max-w-md w-full p-6 space-y-5 relative shadow-2xl">
       <div class="flex justify-between items-center pb-2 border-b border-slate-800">
         <div class="flex items-center gap-2">
           <span class="text-xl">⚡</span>
-          <h3 class="font-bold text-white text-base">e-Cache Enterprise Access</h3>
+          <h3 class="font-bold text-white text-base">Sign In to Your Account</h3>
         </div>
         <button onclick="closeAuthModal()" class="text-slate-400 hover:text-white text-lg">✕</button>
       </div>
 
       <p class="text-xs text-slate-400">
-        Sign in to manage institutional compute buffers, automated clearing keys, and Base smart contract balances.
+        Enter your individual or corporate email to access compute balances, automated API quotas, and your Base smart wallet.
       </p>
 
       <div class="space-y-3">
-        <!-- Corporate Email OTP Flow -->
+        <!-- Corporate Email OTP Sign In -->
         <div class="space-y-2">
           <label class="block text-xs font-semibold text-slate-300">Corporate or Personal Email</label>
           <div class="flex gap-2">
-            <input type="email" id="auth-email-input" placeholder="admin@enterprise.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400" />
+            <input type="email" id="auth-email-input" placeholder="name@company.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400" />
             <button onclick="submitEmailAuth()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 font-bold text-xs rounded-xl text-white transition whitespace-nowrap">
-              Send OTP
+              Send Passcode
             </button>
           </div>
         </div>
 
         <div class="relative flex py-2 items-center">
           <div class="flex-grow border-t border-slate-800"></div>
-          <span class="flex-shrink mx-3 text-[10px] uppercase tracking-wider text-slate-500">Or Continue With</span>
+          <span class="flex-shrink mx-3 text-[10px] uppercase tracking-wider text-slate-500">Or Connect With</span>
           <div class="flex-grow border-t border-slate-800"></div>
         </div>
 
-        <!-- Web3 Wallet Provider Connect -->
+        <!-- Web3 Direct Connection Option -->
         <button onclick="connectWeb3Wallet()" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-white flex items-center justify-center gap-2.5 transition">
           <span class="w-3 h-3 rounded-full bg-blue-500"></span>
           <span>Coinbase Smart Wallet / MetaMask</span>
@@ -460,9 +507,9 @@
       fetchLiveBaseBalance(currentUser);
     }
 
-    function openAuthModal() {
+    function openAuthModal(mode) {
       if (currentUser) {
-        if (confirm('Log out of current session (' + currentUser + ')?')) {
+        if (confirm('Sign out of active account (' + currentUser + ')?')) {
           currentUser = null;
           localStorage.removeItem('pwc_auth_user');
           updateAuthUI(null);
@@ -471,6 +518,9 @@
         return;
       }
       document.getElementById('auth-modal').classList.remove('hidden');
+      if (mode === 'email') {
+        setTimeout(() => document.getElementById('auth-email-input').focus(), 100);
+      }
     }
 
     function closeAuthModal() {
@@ -480,10 +530,10 @@
     function submitEmailAuth() {
       const email = document.getElementById('auth-email-input').value.trim();
       if (!email || !email.includes('@')) {
-        alert('Please enter a valid corporate or personal email.');
+        alert('Please enter a valid corporate or personal email address.');
         return;
       }
-      const otp = prompt('Enter the 6-digit confirmation code sent to ' + email + ' (Demo verification code: 123456):');
+      const otp = prompt('Enter the 6-digit one-time passcode sent to ' + email + ' (Demo verification: 123456):');
       if (otp) {
         currentUser = email;
         localStorage.setItem('pwc_auth_user', email);
@@ -509,18 +559,20 @@
           alert('Wallet connection aborted: ' + err.message);
         }
       } else {
-        alert('No Web3 wallet injected. Please use corporate email login or open inside Coinbase Wallet.');
+        alert('No Web3 wallet detected. Please enter your email above to continue or open this link in Coinbase Wallet.');
       }
     }
 
     function updateAuthUI(user) {
-      const label = document.getElementById('auth-label');
-      if (!label) return;
+      const authLabel = document.getElementById('auth-label');
+      const accountLabel = document.getElementById('account-label');
       if (user) {
-        const shortUser = user.length > 16 ? user.substring(0, 6) + '...' + user.substring(user.length - 4) : user;
-        label.innerText = '👤 ' + shortUser;
+        const shortUser = user.length > 15 ? user.substring(0, 6) + '...' + user.substring(user.length - 4) : user;
+        if (authLabel) authLabel.innerText = 'Connected';
+        if (accountLabel) accountLabel.innerText = '👤 ' + shortUser;
       } else {
-        label.innerText = 'Connect Wallet';
+        if (authLabel) authLabel.innerText = 'Connect Wallet';
+        if (accountLabel) accountLabel.innerText = 'Sign In / Account';
       }
     }
 
@@ -544,7 +596,7 @@
         return;
       }
       if (!currentUser) {
-        openAuthModal();
+        openAuthModal('wallet');
         return;
       }
       alert('Initiating Base stake order for ' + amount + ' $PWC into micro-savings container.');
@@ -552,7 +604,7 @@
 
     function executeVaultLock(tranche) {
       if (!currentUser) {
-        openAuthModal();
+        openAuthModal('wallet');
         return;
       }
       alert('Order initiated: Lock $PWC in ' + tranche + '. Awaiting Base smart contract approval.');
@@ -560,15 +612,15 @@
 
     function executeBuyBond(bondId, price) {
       if (!currentUser) {
-        openAuthModal();
+        openAuthModal('wallet');
         return;
       }
-      alert('Confirm purchase of ' + bondId + ' for ' + price + ' with 1.0% EIP-2981 royalty routing to treasury.');
+      alert('Confirm purchase of ' + bondId + ' for ' + price + ' with dynamic EIP-2981 royalty routing to treasury.');
     }
 
     function promptListBond() {
       if (!currentUser) {
-        openAuthModal();
+        openAuthModal('wallet');
         return;
       }
       const bondId = prompt('Enter the Debenture Token ID to list:');
