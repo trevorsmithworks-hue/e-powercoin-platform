@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>e-Cache ($PWC) | AI Compute & Energy Standard</title>
+  <title>e-Cache ($PWC) | Wholesale AI Compute & Energy Clearinghouse</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Ethers.js for Base Network Read/Write -->
+  <!-- Ethers.js for Base Network Operations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
   <style>
     body { background-color: #030712; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -25,7 +25,7 @@
             <span class="font-black text-lg text-white">e-Cache ($PWC)</span>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Base (8453)</span>
           </div>
-          <p class="text-[10px] text-slate-400">Costco for AI Compute & Energy Standard • e-powercoin.com</p>
+          <p class="text-[10px] text-slate-400">Wholesale AI Compute & Energy Clearinghouse • e-powercoin.com</p>
         </div>
       </div>
 
@@ -36,22 +36,23 @@
         <button onclick="switchTab('index')" id="nav-index" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">📈 Energy Index</button>
         <button onclick="switchTab('vault')" id="nav-vault" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">🏛️ Vault</button>
         <button onclick="switchTab('marketplace')" id="nav-marketplace" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">🏪 Marketplace</button>
-        <span class="ml-2 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Power Credits
-        </span>
-        <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 flex items-center gap-1.5">
+        <button onclick="switchTab('surge')" id="nav-surge" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 flex items-center gap-1.5 hover:bg-cyan-500/20 transition">
           <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 pulse-dot"></span> Grid Surge
+        </button>
+        <span class="ml-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Power Credits
         </span>
       </nav>
 
       <div class="flex items-center gap-2">
-        <a href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x061610342649ceC7Df2451127A84FDf3daa7418d" target="_blank" class="px-3 py-1.5 bg-pink-600/20 hover:bg-pink-600/30 border border-pink-500/40 text-pink-300 rounded-xl text-xs font-bold transition">
-          Trade $PWC ↗
-        </a>
+        <button onclick="openTradePool()" class="px-3 py-1.5 bg-pink-600/20 hover:bg-pink-600/30 border border-pink-500/40 text-pink-300 rounded-xl text-xs font-bold transition flex items-center gap-1">
+          <span>Trade $PWC</span>
+          <span class="text-[10px]">↗</span>
+        </button>
         <button onclick="manageApiKey()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition" id="key-btn">
           ⚙️ Set API Key
         </button>
-        <!-- Single Unified Auth Action Button -->
+        <!-- Single Unified Auth Button -->
         <button onclick="openAuthModal()" id="auth-btn" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-blue-500/20">
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span id="auth-label">Sign In / Connect</span>
@@ -130,7 +131,7 @@
           <h1 class="text-2xl font-black text-white flex items-center gap-2">
             <span>⚡ Wholesale AI Compute Gateway ($ePT)</span>
           </h1>
-          <p class="text-sm text-slate-400 mt-1">"Costco for AI Compute" — Purchase bulk AI tokens backed by $PWC arbitrage.</p>
+          <p class="text-sm text-slate-400 mt-1">Enterprise Token Arbitrage Engine — Purchase bulk AI tokens backed by $PWC power settlement.</p>
         </div>
         <div class="text-right">
           <div class="text-xs font-mono text-cyan-400">TREASURY BUY-BACK ENGINE</div>
@@ -430,6 +431,52 @@
         </div>
       </div>
     </section>
+
+    <!-- TAB 6: GRID SURGE TELEMETRY VIEW -->
+    <section id="tab-surge" class="hidden space-y-6">
+      <div class="flex flex-col md:flex-row justify-between md:items-end gap-4 border-b border-slate-800 pb-4">
+        <div>
+          <h2 class="text-2xl font-black text-white flex items-center gap-2">
+            <span>⚡ Grid Surge Telemetry & Curtailment Monitor</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">Real-time balancing authority data feeds for automated compute load shifting and energy arbitrage.</p>
+        </div>
+        <div class="text-right">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Active Node Sync</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="glass-card rounded-2xl p-5 space-y-2 border-l-4 border-cyan-400">
+          <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Curtailment State</div>
+          <div class="text-2xl font-black text-cyan-300">Level 2 Surge</div>
+          <div class="text-xs text-cyan-400">Wholesale AI Compute Discount Active</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 space-y-2 border-l-4 border-emerald-400">
+          <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">24h Treasury Buybacks</div>
+          <div class="text-2xl font-black text-white">18,450 PWC</div>
+          <div class="text-xs text-emerald-400">80% Margin Pool Inflow</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 space-y-2 border-l-4 border-purple-400">
+          <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">Active Compute Load</div>
+          <div class="text-2xl font-black text-purple-300">4.82 MW</div>
+          <div class="text-xs text-purple-400">Distributed Across 6 Tier-3 Facilities</div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 space-y-4">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-200">Surge Nodes & Automated Buyback Trigger</h3>
+          <button onclick="openTradePool()" class="px-3 py-1 bg-pink-600 hover:bg-pink-500 text-white rounded-lg text-xs font-bold transition">
+            Uniswap Liquidity Depth ↗
+          </button>
+        </div>
+        <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
+          <p>When wholesale electricity prices drop beneath $0.025/kWh due to regional grid overgeneration, excess energy is directed into verified high-density AI clusters to clear batched compute runs.</p>
+          <p class="text-cyan-400 font-mono">Arbitrage Margins: 80% automatically repurchases $PWC via Uniswap v3; 20% replenishes infrastructure debentures.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Enterprise / User Sign-In & Connect Modal -->
@@ -500,6 +547,10 @@
     if (currentUser) {
       updateAuthUI(currentUser);
       fetchLiveBaseBalance(currentUser);
+    }
+
+    function openTradePool() {
+      window.open('https://app.uniswap.org/swap?chain=base&outputCurrency=' + PWC_CONTRACT, '_blank');
     }
 
     function openAuthModal() {
@@ -645,7 +696,7 @@
     }
 
     function switchTab(tabKey) {
-      const tabs = ['dashboard', 'compute', 'index', 'vault', 'marketplace'];
+      const tabs = ['dashboard', 'compute', 'index', 'vault', 'marketplace', 'surge'];
       tabs.forEach(t => {
         const sec = document.getElementById('tab-' + t);
         const btn = document.getElementById('nav-' + t);
@@ -653,11 +704,15 @@
           if (t === tabKey) {
             sec.classList.remove('hidden');
             btn.classList.add('bg-cyan-500', 'text-white', 'shadow');
-            btn.classList.remove('text-slate-400');
+            btn.classList.remove('text-slate-400', 'bg-cyan-500/10', 'text-cyan-300');
           } else {
             sec.classList.add('hidden');
             btn.classList.remove('bg-cyan-500', 'text-white', 'shadow');
-            btn.classList.add('text-slate-400');
+            if (t === 'surge') {
+              btn.classList.add('bg-cyan-500/10', 'text-cyan-300');
+            } else {
+              btn.classList.add('text-slate-400');
+            }
           }
         }
       });
