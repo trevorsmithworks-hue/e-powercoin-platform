@@ -51,15 +51,10 @@
         <button onclick="manageApiKey()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition" id="key-btn">
           ⚙️ Set API Key
         </button>
-        <!-- Specific Sign In to Account Option -->
-        <button onclick="openAuthModal('email')" id="account-btn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
-          <span>🔑</span>
-          <span id="account-label">Sign In / Account</span>
-        </button>
-        <!-- Web3 Direct Wallet Connector -->
-        <button onclick="openAuthModal('wallet')" id="auth-btn" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-blue-500/20">
+        <!-- Single Unified Auth Action Button -->
+        <button onclick="openAuthModal()" id="auth-btn" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-blue-500/20">
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span id="auth-label">Connect Wallet</span>
+          <span id="auth-label">Sign In / Connect</span>
         </button>
       </div>
     </div>
@@ -437,29 +432,29 @@
     </section>
   </main>
 
-  <!-- Enterprise / Personal Sign-In Authentication Modal -->
+  <!-- Enterprise / User Sign-In & Connect Modal -->
   <div id="auth-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
     <div class="glass-card bg-slate-950/95 border border-slate-800 rounded-2xl max-w-md w-full p-6 space-y-5 relative shadow-2xl">
       <div class="flex justify-between items-center pb-2 border-b border-slate-800">
         <div class="flex items-center gap-2">
           <span class="text-xl">⚡</span>
-          <h3 class="font-bold text-white text-base">Sign In to Your Account</h3>
+          <h3 class="font-bold text-white text-base">Sign In / Connect Wallet</h3>
         </div>
         <button onclick="closeAuthModal()" class="text-slate-400 hover:text-white text-lg">✕</button>
       </div>
 
       <p class="text-xs text-slate-400">
-        Enter your individual or corporate email to access compute balances, automated API quotas, and your Base smart wallet.
+        Sign in via corporate email or connect your Web3 wallet to manage compute balances and Base smart accounts.
       </p>
 
       <div class="space-y-3">
-        <!-- Corporate Email OTP Sign In -->
+        <!-- Corporate / Individual Email Passcode Sign In -->
         <div class="space-y-2">
           <label class="block text-xs font-semibold text-slate-300">Corporate or Personal Email</label>
           <div class="flex gap-2">
             <input type="email" id="auth-email-input" placeholder="name@company.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400" />
             <button onclick="submitEmailAuth()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 font-bold text-xs rounded-xl text-white transition whitespace-nowrap">
-              Send Passcode
+              Send OTP
             </button>
           </div>
         </div>
@@ -507,7 +502,7 @@
       fetchLiveBaseBalance(currentUser);
     }
 
-    function openAuthModal(mode) {
+    function openAuthModal() {
       if (currentUser) {
         if (confirm('Sign out of active account (' + currentUser + ')?')) {
           currentUser = null;
@@ -518,9 +513,10 @@
         return;
       }
       document.getElementById('auth-modal').classList.remove('hidden');
-      if (mode === 'email') {
-        setTimeout(() => document.getElementById('auth-email-input').focus(), 100);
-      }
+      setTimeout(() => {
+        const input = document.getElementById('auth-email-input');
+        if (input) input.focus();
+      }, 100);
     }
 
     function closeAuthModal() {
@@ -565,14 +561,12 @@
 
     function updateAuthUI(user) {
       const authLabel = document.getElementById('auth-label');
-      const accountLabel = document.getElementById('account-label');
+      if (!authLabel) return;
       if (user) {
         const shortUser = user.length > 15 ? user.substring(0, 6) + '...' + user.substring(user.length - 4) : user;
-        if (authLabel) authLabel.innerText = 'Connected';
-        if (accountLabel) accountLabel.innerText = '👤 ' + shortUser;
+        authLabel.innerText = '👤 ' + shortUser;
       } else {
-        if (authLabel) authLabel.innerText = 'Connect Wallet';
-        if (accountLabel) accountLabel.innerText = 'Sign In / Account';
+        authLabel.innerText = 'Sign In / Connect';
       }
     }
 
@@ -596,7 +590,7 @@
         return;
       }
       if (!currentUser) {
-        openAuthModal('wallet');
+        openAuthModal();
         return;
       }
       alert('Initiating Base stake order for ' + amount + ' $PWC into micro-savings container.');
@@ -604,7 +598,7 @@
 
     function executeVaultLock(tranche) {
       if (!currentUser) {
-        openAuthModal('wallet');
+        openAuthModal();
         return;
       }
       alert('Order initiated: Lock $PWC in ' + tranche + '. Awaiting Base smart contract approval.');
@@ -612,7 +606,7 @@
 
     function executeBuyBond(bondId, price) {
       if (!currentUser) {
-        openAuthModal('wallet');
+        openAuthModal();
         return;
       }
       alert('Confirm purchase of ' + bondId + ' for ' + price + ' with dynamic EIP-2981 royalty routing to treasury.');
@@ -620,7 +614,7 @@
 
     function promptListBond() {
       if (!currentUser) {
-        openAuthModal('wallet');
+        openAuthModal();
         return;
       }
       const bondId = prompt('Enter the Debenture Token ID to list:');
