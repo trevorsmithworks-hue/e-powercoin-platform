@@ -87,8 +87,8 @@
 
         <div class="glass-card rounded-2xl p-5 space-y-2">
           <div class="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">EIP-2981 Holder Tier</div>
-          <div class="text-3xl font-black text-purple-400">Gold Tier</div>
-          <div class="text-xs text-slate-400">1.0% Dynamic Royalty Rate Applied</div>
+          <div class="text-3xl font-black text-purple-400" id="dash-holder-tier">Gold Tier</div>
+          <div class="text-xs text-slate-400">10% Protocol Discount Applied</div>
         </div>
       </div>
 
@@ -149,6 +149,22 @@
           <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Cloudflare Edge Proxy Active</span>
         </div>
 
+        <!-- Quick Prompt Template Presets -->
+        <div class="space-y-1.5">
+          <label class="block text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Example Presets</label>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="setPromptPreset('Calculate the kilowatt-hours and cost in $PWC required to fully charge a 75 kWh electric vehicle.')" class="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 rounded-lg text-xs text-slate-300 transition">
+              🔋 EV 75 kWh Charge Calculation
+            </button>
+            <button onclick="setPromptPreset('Explain how regional wholesale electricity curtailment provides cheaper power to AI data centers during off-peak hours.')" class="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 rounded-lg text-xs text-slate-300 transition">
+              ⚡ Curtailment Arbitrage Breakdown
+            </button>
+            <button onclick="setPromptPreset('Estimate the electricity burn and token cost of running 1,000,000 prompt tokens on an open-weight 70B LLM cluster.')" class="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 rounded-lg text-xs text-slate-300 transition">
+              🧠 1M Tokens Compute Arbitrage
+            </button>
+          </div>
+        </div>
+
         <div class="space-y-4">
           <div>
             <label class="block text-xs font-semibold text-slate-400 mb-1.5">Target LLM</label>
@@ -162,7 +178,7 @@
 
           <div>
             <label class="block text-xs font-semibold text-slate-400 mb-1.5">Prompt Ingestion Test</label>
-            <textarea id="promptInput" rows="3" placeholder="Type a prompt to test inference..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400"></textarea>
+            <textarea id="promptInput" rows="3" placeholder="Type a prompt or choose a preset above..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400"></textarea>
           </div>
 
           <button id="execute-btn" onclick="executeLiveInference()" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold rounded-xl text-sm transition shadow-lg shadow-cyan-500/20">
@@ -286,7 +302,7 @@
           <p class="text-xs text-slate-400">Short-duration baseline energy block backed by municipal grid arbitrage. Semi-annual distributions in $PWC.</p>
           <div class="bg-slate-900/80 p-3.5 rounded-xl space-y-2 text-xs">
             <div class="flex justify-between text-slate-400"><span>Lock Period:</span><span class="text-white font-mono">5 Years (1,825 Days)</span></div>
-            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-emerald-400 font-mono">Bronze (0.25% Dynamic)</span></div>
+            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-emerald-400 font-mono">Bronze (No Discount)</span></div>
             <div class="flex justify-between text-slate-400"><span>Early Exit Fee:</span><span class="text-slate-300 font-mono">2.5% Burn Penalty</span></div>
           </div>
           <button onclick="executeVaultLock('5-Year Debenture', '2500')" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-emerald-500/20">
@@ -305,7 +321,7 @@
           <p class="text-xs text-slate-400">Secured against institutional data center power purchase agreements. Quarterly reflection distributions in $PWC.</p>
           <div class="bg-slate-900/80 p-3.5 rounded-xl space-y-2 text-xs">
             <div class="flex justify-between text-slate-400"><span>Lock Period:</span><span class="text-white font-mono">10 Years (3,650 Days)</span></div>
-            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-purple-400 font-mono">Silver (0.5% Dynamic)</span></div>
+            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-cyan-400 font-mono">Silver (5% Compute Discount)</span></div>
             <div class="flex justify-between text-slate-400"><span>Early Exit Fee:</span><span class="text-slate-300 font-mono">5.0% Burn Penalty</span></div>
           </div>
           <button onclick="executeVaultLock('10-Year Debenture', '10000')" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-cyan-500/20">
@@ -324,7 +340,7 @@
           <p class="text-xs text-slate-400">Institutional long-term baseline infrastructure debenture with non-expiring wholesale $ePT buffers.</p>
           <div class="bg-slate-900/80 p-3.5 rounded-xl space-y-2 text-xs">
             <div class="flex justify-between text-slate-400"><span>Lock Period:</span><span class="text-white font-mono">20 Years (7,300 Days)</span></div>
-            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-purple-400 font-mono">Gold (1.0% Dynamic)</span></div>
+            <div class="flex justify-between text-slate-400"><span>Royalty Tier:</span><span class="text-purple-400 font-mono">Gold (10% Compute Discount)</span></div>
             <div class="flex justify-between text-slate-400"><span>Early Exit Fee:</span><span class="text-slate-300 font-mono">10.0% Burn Penalty</span></div>
           </div>
           <button onclick="executeVaultLock('20-Year Debenture', '50000')" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-purple-500/20">
@@ -553,11 +569,11 @@
     ];
 
     let currentUser = localStorage.getItem('pwc_auth_user') || null;
+    let userTier = 'Gold'; // Gold (10% discount), Silver (5% discount), Bronze (0% discount)
     let provider = null;
     let signer = null;
     let currentPwcPriceUsd = 1.8000;
 
-    // Direct Pre-Wired Cloudflare Serverless Proxy
     const DEFAULT_PROXY_URL = "https://epower-inference-proxy.trevorsmithworks.workers.dev";
     let PROXY_URL = localStorage.getItem('pwc_proxy_url') || DEFAULT_PROXY_URL;
     let openRouterKey = localStorage.getItem('pwc_openrouter_key') || "";
@@ -569,6 +585,14 @@
     if (currentUser) {
       updateAuthUI(currentUser);
       fetchLiveBaseBalance(currentUser);
+    }
+
+    function setPromptPreset(text) {
+      const input = document.getElementById('promptInput');
+      if (input) {
+        input.value = text;
+        input.focus();
+      }
     }
 
     async function fetchLiveMarketData() {
@@ -872,7 +896,7 @@
 
       const text = promptInput ? promptInput.value.trim() : '';
       if (!text) {
-        alert('Please enter a prompt.');
+        alert('Please enter a prompt or select a preset.');
         return;
       }
 
@@ -913,8 +937,14 @@
         const tokens = data.usage?.total_tokens || Math.ceil((text.length + reply.length) / 4);
         const kwh = (tokens * 0.0003).toFixed(5);
         const pwcRate = currentPwcPriceUsd > 0 ? (currentPwcPriceUsd / 0.035) : 51.4286;
-        const pwc = (Number(kwh) / pwcRate).toFixed(4);
-        const costUsd = ((tokens / 1000000) * 0.20).toFixed(5);
+        
+        // Dynamic Tier Discount Application
+        let discountMultiplier = 1.0;
+        if (userTier === 'Gold') discountMultiplier = 0.90; // 10% compute discount
+        else if (userTier === 'Silver') discountMultiplier = 0.95; // 5% compute discount
+        
+        const pwc = ((Number(kwh) / pwcRate) * discountMultiplier).toFixed(4);
+        const costUsd = (((tokens / 1000000) * 0.20) * discountMultiplier).toFixed(5);
 
         if (tokenDisplay) tokenDisplay.innerText = Number(tokens).toLocaleString() + ' Tokens';
         if (kwhDisplay) kwhDisplay.innerText = kwh + ' kWh';
