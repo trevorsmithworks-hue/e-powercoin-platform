@@ -1,195 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>e-Cache | Power Coin ($PWC) Official Token Page</title>
-  <meta name="description" content="Official token information page for e-Cache Power Coin ($PWC) on the Base L2 Network. Operated by HUBALUBA." />
-  
+  <title>e-Cache Power Coin ($PWC) | Official Token Information</title>
+  <meta name="description" content="Official transparency, founder, and whitepaper portal for e-Cache Power Coin ($PWC). A subsidiary of HUBALUBA." />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          colors: { brand: '#0284c7' }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased selection:bg-brand selection:text-white">
+<body class="bg-gray-50 text-gray-900 antialiased selection:bg-blue-600 selection:text-white">
 
-  <!-- Header -->
-  <header class="bg-white border-b border-gray-200">
-    <div class="max-w-4xl mx-auto px-6 py-5 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <!-- Replaced the blue "e" with your official 3D logo from GitHub -->
-        <img src="https://raw.githubusercontent.com/trevorsmithworks-hue/e-powercoin-platform/main/logo.png" alt="Power Coin Logo" class="w-12 h-12 rounded-full shadow-sm border border-gray-200" />
+  <!-- HEADER WITH ALL MANDATORY LINKS -->
+  <header class="bg-white border-b border-gray-300 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <!-- Exact 3D Logo from your GitHub -->
+        <img src="https://raw.githubusercontent.com/trevorsmithworks-hue/e-powercoin-platform/main/logo.png" alt="Power Coin Logo" class="w-14 h-14 rounded-full shadow-md" />
         <div>
-          <h1 class="font-bold text-xl leading-tight">e-Cache</h1>
-          <div class="text-xs font-semibold text-gray-500 tracking-wider">POWER COIN ($PWC)</div>
+          <h1 class="font-extrabold text-2xl tracking-tight text-gray-900">e-Cache Power Coin</h1>
+          <p class="text-sm font-bold text-blue-600 tracking-wider">TICKER: $PWC</p>
         </div>
       </div>
-      <a href="https://basescan.org/token/0x061610342649ceC7Df2451127A84FDf3daa7418d" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold px-4 py-2 rounded-lg transition border border-gray-300">
-        View on BaseScan
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-      </a>
+      
+      <!-- Safe, Verified Links Menu -->
+      <nav class="flex flex-wrap items-center justify-center gap-3 text-sm font-semibold">
+        <a href="#about" class="text-gray-600 hover:text-blue-600 transition px-2">About</a>
+        <a href="#founder" class="text-gray-600 hover:text-blue-600 transition px-2">Founder</a>
+        <a href="#split" class="text-gray-600 hover:text-blue-600 transition px-2">Token Split</a>
+        <a href="#whitepaper" class="text-gray-600 hover:text-blue-600 transition px-2">Whitepaper</a>
+        <a href="https://www.linkedin.com/in/trevor-smith-aa1500322" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:underline px-2 flex items-center gap-1">
+          LinkedIn ↗
+        </a>
+        <a href="https://basescan.org/token/0x061610342649ceC7Df2451127A84FDf3daa7418d" target="_blank" rel="noopener noreferrer" class="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition flex items-center gap-1">
+          BaseScan Contract ↗
+        </a>
+      </nav>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="max-w-4xl mx-auto px-6 py-12 space-y-12">
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-16">
 
-    <!-- Neutral Project Description -->
-    <section class="space-y-4">
-      <h2 class="text-2xl font-bold border-b border-gray-200 pb-2">About e-Cache ($PWC)</h2>
-      <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
-        e-Cache ($PWC) is a utility token deployed on the Base Layer 2 network. It functions as the native accounting and settlement asset for the digital marketplace and Web3 ecosystem operated by HUBALUBA.
-      </p>
-      <div class="bg-blue-50 border border-blue-100 rounded-lg p-4 text-sm text-blue-900 leading-relaxed">
-        <strong>Trademark Notice:</strong> Power Coin ($PWC) is the proprietary intellectual property of HUBALUBA. This token and project have absolutely no affiliation, sponsorship, or connection with PricewaterhouseCoopers (PwC).
-      </div>
-    </section>
-
-    <!-- Token Information -->
-    <section class="space-y-4">
-      <h2 class="text-2xl font-bold border-b border-gray-200 pb-2">Token Information</h2>
-      <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-        <table class="w-full text-left text-sm">
-          <tbody class="divide-y divide-gray-200">
-            <tr>
-              <th class="py-3 px-4 bg-gray-50 text-gray-600 font-medium w-1/3">Token Name</th>
-              <td class="py-3 px-4 font-semibold">e-Cache Power Coin</td>
-            </tr>
-            <tr>
-              <th class="py-3 px-4 bg-gray-50 text-gray-600 font-medium">Ticker Symbol</th>
-              <td class="py-3 px-4 font-semibold text-brand">$PWC</td>
-            </tr>
-            <tr>
-              <th class="py-3 px-4 bg-gray-50 text-gray-600 font-medium">Network</th>
-              <td class="py-3 px-4">Base (Ethereum L2) - Chain ID: 8453</td>
-            </tr>
-            <tr>
-              <th class="py-3 px-4 bg-gray-50 text-gray-600 font-medium">Contract Address</th>
-              <td class="py-3 px-4 font-mono text-xs break-all text-gray-800">0x061610342649ceC7Df2451127A84FDf3daa7418d</td>
-            </tr>
-            <tr>
-              <th class="py-3 px-4 bg-gray-50 text-gray-600 font-medium">Decimals</th>
-              <td class="py-3 px-4">18</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- MANDATORY: Corporate Transparency & Founder -->
-    <section class="space-y-4">
-      <h2 class="text-2xl font-bold border-b border-gray-200 pb-2 flex items-center gap-2">
-        Corporate Transparency & Leadership
-        <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-      </h2>
-      <p class="text-sm text-gray-600 mb-4">
-        This project is actively maintained and operated under full regulatory compliance by a registered Canadian business entity.
-      </p>
+    <!-- SECTION 1: WHAT IS IT (EXPLAINED SIMPLY) -->
+    <section id="about" class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 sm:p-10 space-y-6">
+      <h2 class="text-3xl font-extrabold text-gray-900 border-b border-gray-100 pb-4">What is e-Cache Power Coin?</h2>
       
-      <div class="grid sm:grid-cols-2 gap-6">
-        <!-- Entity Details -->
-        <div class="bg-white border border-gray-200 p-5 rounded-xl shadow-sm space-y-3 text-sm">
-          <div class="font-bold text-gray-900 mb-1 uppercase tracking-wide text-[11px] text-gray-500">Operating Entity</div>
-          <div class="flex justify-between items-center border-b border-gray-100 pb-2">
-            <span class="text-gray-500">Business Name:</span>
-            <span class="font-bold text-gray-900">HUBALUBA</span>
-          </div>
-          <div class="flex justify-between items-center border-b border-gray-100 pb-2">
-            <span class="text-gray-500">Jurisdiction:</span>
-            <span class="text-gray-800">Ontario, Canada</span>
-          </div>
-          <div class="flex justify-between items-center border-b border-gray-100 pb-2">
-            <span class="text-gray-500">Ontario BIN:</span>
-            <span class="font-mono text-gray-800">1001599392</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-gray-500">Federal CRA BN:</span>
-            <span class="font-mono text-gray-800">716893631</span>
-          </div>
+      <div class="prose max-w-none text-gray-700 text-lg leading-relaxed space-y-4">
+        <p>
+          Think of <strong>e-Cache Power Coin ($PWC)</strong> as a digital battery. In the same way that a dollar bill represents money, a Power Coin represents physical energy and computer power. We call this the <strong>"Electrodollar."</strong>
+        </p>
+        <p>
+          Right now, Artificial Intelligence (AI) and large computers use massive amounts of electricity. At the same time, solar panels and wind turbines sometimes produce more electricity than we can use, which goes to waste. 
+        </p>
+        <p>
+          Our company, <strong>HUBALUBA</strong>, fixes this problem. <strong>e-Cache Power Coin</strong> is a subsidiary protocol of HUBALUBA. We buy up cheap, extra electricity, store it in batteries, and use it to power AI computers. We use the blockchain (the Base L2 Network) to keep a perfect, unchangeable receipt of this energy. That receipt is the $PWC token.
+        </p>
+        <div class="bg-blue-50 text-blue-900 p-4 rounded-xl text-sm font-medium border border-blue-100">
+          <strong>Mandatory Trademark Notice:</strong> e-Cache Power Coin ($PWC) is owned by HUBALUBA (Ontario BIN: 1001599392). It has absolutely no affiliation or relationship with the accounting firm PricewaterhouseCoopers (PwC).
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE 80/20 SPLIT -->
+    <section id="split" class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 sm:p-10 space-y-6">
+      <h2 class="text-3xl font-extrabold text-gray-900 border-b border-gray-100 pb-4">How the Tokens are Divided (The 80/20 Split)</h2>
+      
+      <p class="text-gray-700 text-lg leading-relaxed">
+        To make sure the project is fair, safe, and trustworthy for the public, the total supply of Power Coins is strictly divided into two pieces:
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-6 mt-4">
+        <div class="bg-gray-50 border border-gray-200 p-6 rounded-xl">
+          <div class="text-3xl font-black text-blue-600 mb-2">80%</div>
+          <h3 class="font-bold text-gray-900 text-lg mb-2">The Public Liquidity Pool</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            80% of the value generated by our energy system goes directly back to the public market. This ensures that regular people can buy, sell, and trade $PWC freely on the Base network. By putting 80% out to the public, it prevents the company from hoarding all the tokens and crashing the price.
+          </p>
         </div>
 
-        <!-- Founder Details -->
-        <div class="bg-white border border-gray-200 p-5 rounded-xl shadow-sm space-y-3 text-sm">
-          <div class="font-bold text-gray-900 mb-1 uppercase tracking-wide text-[11px] text-gray-500">Founder & Sole Proprietor</div>
-          <div class="flex justify-between items-center border-b border-gray-100 pb-2">
-            <span class="text-gray-500">Name:</span>
-            <span class="font-bold text-gray-900">Trevor Curtis Smith</span>
-          </div>
-          <div class="flex justify-between items-center border-b border-gray-100 pb-2">
-            <span class="text-gray-500">Verified Identity:</span>
-            <a href="https://www.linkedin.com/in/trevor-smith-aa1500322" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-semibold flex items-center gap-1">
-              LinkedIn Profile
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-          </div>
-          <div class="flex justify-between items-start border-b border-gray-100 pb-2">
-            <span class="text-gray-500 whitespace-nowrap mr-4">Contract Deployer:</span>
-            <span class="font-mono text-[10px] text-gray-800 break-all text-right mt-0.5">0x534927237077B8476839CEc120A05D8422B1Db8A</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-gray-500">Official Email:</span>
-            <a href="mailto:contact@e-powercoin.com" class="text-blue-600 hover:underline text-xs">contact@e-powercoin.com</a>
+        <div class="bg-gray-50 border border-gray-200 p-6 rounded-xl">
+          <div class="text-3xl font-black text-green-600 mb-2">20%</div>
+          <h3 class="font-bold text-gray-900 text-lg mb-2">The Locked Company Treasury</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            20% is held by the parent company (HUBALUBA) to pay for servers, batteries, and developers. However, <strong>these tokens are cryptographically locked</strong>. They are locked completely for 12 months, and then slowly released over 36 months. This proves the founder cannot run away with the funds.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: FOUNDER BIO -->
+    <section id="founder" class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 sm:p-10 space-y-6">
+      <h2 class="text-3xl font-extrabold text-gray-900 border-b border-gray-100 pb-4">Founder & Corporate Information</h2>
+      
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="flex-grow space-y-4 text-gray-700 text-lg leading-relaxed">
+          <p>
+            <strong>Trevor Curtis Smith</strong> (born October 16th, 1980) is the sole founder and proprietor of <strong>HUBALUBA</strong>, the Canadian parent company that created the e-Cache Power Coin protocol.
+          </p>
+          <p>
+            With a vision to create the "Electrodollar"—a currency backed entirely by functional computer power and electricity—Trevor deployed the $PWC smart contract on the Base L2 network to ensure fast, low-cost, and secure transactions for everyone.
+          </p>
+          <div class="bg-gray-100 p-5 rounded-xl border border-gray-200 space-y-2 text-sm mt-6">
+            <div class="flex justify-between border-b border-gray-200 pb-2">
+              <span class="font-semibold text-gray-600">Company Name:</span>
+              <span class="font-bold text-gray-900">HUBALUBA</span>
+            </div>
+            <div class="flex justify-between border-b border-gray-200 pb-2">
+              <span class="font-semibold text-gray-600">Government Registry:</span>
+              <span class="text-gray-900">Ontario, Canada (BIN: 1001599392)</span>
+            </div>
+            <div class="flex justify-between border-b border-gray-200 pb-2">
+              <span class="font-semibold text-gray-600">Canada Revenue Agency:</span>
+              <span class="text-gray-900">BN: 716893631</span>
+            </div>
+            <div class="flex justify-between border-b border-gray-200 pb-2">
+              <span class="font-semibold text-gray-600">Smart Contract Deployer Wallet:</span>
+              <span class="font-mono text-[10px] sm:text-xs">0x534927237077B8476839CEc120A05D8422B1Db8A</span>
+            </div>
+            <div class="flex justify-between pt-2">
+              <span class="font-semibold text-gray-600">Verified Contact:</span>
+              <a href="mailto:contact@e-powercoin.com" class="text-blue-600 hover:underline font-medium">contact@e-powercoin.com</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Official Links & Documentation -->
-    <section class="space-y-4">
-      <h2 class="text-2xl font-bold border-b border-gray-200 pb-2">Official Channels & Documentation</h2>
-      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-        <ul class="grid sm:grid-cols-2 gap-y-4 gap-x-8 text-sm font-medium">
-          <li>
-            <a href="https://github.com/trevorsmithworks-hue/e-powercoin-platform/blob/main/WHITEPAPER.md" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-700 hover:text-brand transition">
-              <span class="text-xl">📄</span> Official Whitepaper
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/trevorsmithworks-hue/e-powercoin-platform" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-700 hover:text-brand transition">
-              <span class="text-xl">💻</span> GitHub Repository
-            </a>
-          </li>
-          <li>
-            <a href="https://x.com/epowercoin" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-700 hover:text-brand transition">
-              <span class="text-xl">🐦</span> X (Twitter)
-            </a>
-          </li>
-          <li>
-            <a href="https://youtube.com/@e-powercoin" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-700 hover:text-brand transition">
-              <span class="text-xl">▶️</span> YouTube Channel
-            </a>
-          </li>
-          <li>
-            <a href="https://www.tiktok.com/@epowercoin" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-700 hover:text-brand transition">
-              <span class="text-xl">📱</span> TikTok
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/epowercoin" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-gray-700 hover:text-brand transition">
-              <span class="text-xl">📸</span> Instagram
-            </a>
-          </li>
+    <!-- SECTION 4: FULL WHITEPAPER -->
+    <section id="whitepaper" class="bg-gray-900 rounded-2xl shadow-xl border border-gray-800 p-8 sm:p-10 space-y-6 text-gray-300">
+      <div class="flex items-center justify-between border-b border-gray-700 pb-4">
+        <h2 class="text-3xl font-extrabold text-white">Official Whitepaper</h2>
+        <span class="bg-gray-800 text-gray-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Ver 1.0</span>
+      </div>
+      
+      <div class="h-96 overflow-y-auto pr-4 space-y-6 text-sm sm:text-base leading-relaxed scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-900">
+        <h3 class="text-xl font-bold text-white">1. Abstract & System Premise</h3>
+        <p>
+          The digital computational economy is witnessing an unprecedented convergence between electrical grid capacity and machine learning inference throughput. Both industries suffer from market fragmentation. Regional electrical grids face "duck-curve" curtailment, renewable intermittency, and slow multi-month balancing cycles.
+        </p>
+        <p>
+          e-Cache Power Coin ($PWC) introduces a unified, decentralized clearinghouse deployed on Base (Ethereum Layer 2). As an institutional aggregator, e-Cache purchases upstream inference throughput at bulk wholesale discounts, packages capacity into standardized consumer units, and routes captured gross margins directly into $PWC automated market buybacks.
+        </p>
+
+        <h3 class="text-xl font-bold text-white pt-4">2. The Electrodollar Concept</h3>
+        <p>
+          Money traditionally represents debt or gold. The Electrodollar concept means that $PWC represents 1 Kilowatt-hour (kWh) of stored electrical battery arbitrage or its equivalent in AI compute processing power. It is a functional cryptocurrency anchored to the physical world.
+        </p>
+
+        <h3 class="text-xl font-bold text-white pt-4">3. Dual-Rail Economic Engine</h3>
+        <p><strong>Rail 1: Machine Intelligence</strong><br>
+        e-Cache pre-procures bulk compute across major AI clusters. Consumers purchase non-expiring processing bundles. The margin spread generates programmatic surplus.</p>
+        <p><strong>Rail 2: Physical Energy</strong><br>
+        Battery Energy Storage Systems (BESS) interface directly with the clearinghouse. When electricity prices plunge, power is routed to localized compute nodes or settled on-chain.</p>
+
+        <h3 class="text-xl font-bold text-white pt-4">4. Tokenomics & The 80/20 Split</h3>
+        <p>
+          All net margins captured are autonomously settled through strict smart contract rules.
+          <br><br>
+          <strong>80% Automated Liquidity Buybacks:</strong><br>
+          80% of net arbitrage proceeds are executed directly against Base decentralized liquidity pools. Purchased tokens are permanently burned or allocated to protocol staking vaults, applying consistent deflationary buy pressure.
+          <br><br>
+          <strong>20% Founder & Protocol Reserve:</strong><br>
+          The remaining 20% is assigned to the HUBALUBA protocol treasury. To ensure strict long-term alignment, this allocation is locked with a 12-month cliff followed by a 36-month linear drip.
+        </p>
+
+        <h3 class="text-xl font-bold text-white pt-4">5. Technical Specifications</h3>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Token Asset:</strong> e-Cache Power Coin ($PWC)</li>
+          <li><strong>Contract Address:</strong> 0x061610342649ceC7Df2451127A84FDf3daa7418d</li>
+          <li><strong>Network Architecture:</strong> Base (Ethereum L2, Chain ID: 8453)</li>
+          <li><strong>Decimals:</strong> 18</li>
+          <li><strong>Operating Entity:</strong> HUBALUBA (Ontario BIN: 1001599392)</li>
         </ul>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-white border-t border-gray-200 py-8 mt-12">
-    <div class="max-w-4xl mx-auto px-6 text-center text-xs text-gray-500 space-y-2">
-      <p>© 2026 HUBALUBA. All rights reserved.</p>
-      <p>Operating Entity BIN: 1001599392 | CRA BN: 716893631</p>
-      <p class="pt-2"><a href="mailto:contact@e-powercoin.com" class="text-gray-400 hover:text-gray-800 transition">contact@e-powercoin.com</a></p>
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-300 py-8 mt-12">
+    <div class="max-w-5xl mx-auto px-6 text-center text-xs text-gray-500 space-y-2 font-medium">
+      <p>This token information page is designed for regulatory transparency and public documentation.</p>
+      <p>© 2026 HUBALUBA. All rights reserved. e-Cache Power Coin ($PWC).</p>
+      <p class="pt-2"><a href="mailto:contact@e-powercoin.com" class="text-blue-600 hover:underline">contact@e-powercoin.com</a></p>
     </div>
   </footer>
 
